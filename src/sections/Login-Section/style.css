@@ -1,0 +1,151 @@
+.leadingAside-login{
+    margin: 3rem 0 2rem 0;
+    width: 90%;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.imageLogin{
+    height: 30rem;
+    object-fit: cover;
+}
+
+.loginUser-form{
+    flex-direction: column;
+    width: 50%;
+}
+
+.loginUser-title{
+    font-size: 2.3rem;
+    color: var(--green-aqua-color);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.loginUser-description{
+    width: 70%;
+    font-size: var(--small-font-size);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.loginUser-label{
+    flex-direction: column;
+    width: 90%;
+    margin-bottom: 1rem;
+}
+
+.loginUser-label h5 {
+    color: var(--green-dark);
+    align-self: flex-start;
+    margin-left: 12%;
+    margin-bottom: 0.4rem;
+}
+
+.loginUser-input{
+    width: 80%;
+    padding: 0.8rem 1rem;
+    border-radius: 0.5rem;
+    border: 2px solid var(--green-aqua-color);
+    font-size: var(--small-font-size);
+}
+
+.loginUser-input::placeholder{
+    color:var(--green-dark)
+}
+
+.inputPassword{
+    padding: 0 0.8rem;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--white-color);
+}
+
+.inputPassword input{
+    height: 2.6rem;
+    width: 90%;
+}
+
+.seePassowrd{
+    font-size: var(--normal-font-size);
+    color: var(--title-color);
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.seePassowrd:hover{
+    transform: scale(1.03);
+}
+
+.seeSetPassword{
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+    font-size: var(--small-font-size);
+}
+
+.seeSetPassword a {
+    text-decoration: none;
+    color: var(--green-dark);
+    cursor: pointer;
+    transition: all .5s;
+}
+
+.seeSetPassword a:hover{
+    color: var(--green-aqua-color);
+}
+
+.loginUser-button{
+    background-color: var(--green-aqua-color);
+    color: var(--white-color);
+    font-weight: bold;
+    margin-top: 1rem;
+    padding: 0.8rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.loginUser-button:hover{
+    background-color: var(--green-dark);
+    transform: scale(1.05);
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For large devices */
+@media screen and (max-width: 992px) {
+    .loginUser-title{
+        font-size: 2rem;
+    }
+    
+    .imageLogin{
+        display: none;
+    }
+
+    .loginUser-form{
+        width: 100%;
+    }
+}
+
+/* For medium devices */
+@media screen and (max-width: 768px) {
+    .loginUser-description{
+        width: 90%;
+    }
+
+    .loginUser-label, .loginUser-input{
+        width: 100%;
+    }
+
+    .loginUser-label h5{
+        margin-left: 1rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .loginUser-title{
+        font-size: 1.8rem;
+    }
+}
+
+/* For small devices */
+@media screen and (max-width: 370px) {}
