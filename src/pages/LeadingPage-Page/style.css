@@ -1,0 +1,23 @@
+#leading{
+    align-items: center;
+    justify-content: center;
+}
+
+.leadingPage-apresentation{
+    flex-direction: column;
+    gap: 5rem;
+
+    width: 80vw;
+    min-height: 100vh;
+    max-height: auto;
+}
+
+.optionsDoctors{
+    flex-direction: column;
+    gap: 10rem;
+    width: 90%;
+}
+
+.optionsDoctors-title{
+    color: var(--green-dark);
+}
