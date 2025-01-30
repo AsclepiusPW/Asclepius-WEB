@@ -19,6 +19,7 @@
   --green-aqua-ligth-color: #66CDAA;
   --green-tiny-color: #A3E7D6;
   --ligth-green-color: #E0F4EA;
+  --error-color: #fd5252;
 
   --orange-color: #F49300;
   --orange-color-lite: #E9B05A;
@@ -128,6 +129,11 @@ input {
 
 
 /*=============== REUSABLE CSS CLASSES ===============*/
+.form-error{
+  margin-top: 0.5rem;
+  font-size: var(--small-font-size);
+  color: var(--error-color);
+}
 
 /*=============== LAYOUT ===============*/
 .container {
@@ -190,16 +196,16 @@ input {
 /*=============== BUTTONS ===============*/
 .button {
   display: inline-block;
-  background-color: var(--white-color);
-  color: var(--border-color);
-  padding: 1rem 2rem;
-  border-radius: 0.5rem;
+  background-color: var(--green-dark);
+  color: var(--white-color);
+  padding: 0.5rem 1.5rem;
+  border-radius: 2rem;
   transition: all .5s;
   font-weight: var(--font-medium);
 }
 
 .button:hover {
-  background-color: var(--border-color);
+  background-color: var(--green-aqua-color);
   color: var(--white-color);;
 }
 
@@ -215,11 +221,6 @@ input {
 /*=============== BREAKPOINTS ===============*/
 /* For large devices */
 @media screen and (max-width: 992px) {
-  .container {
-    margin-left: var(--mb-1-5);
-    margin-right: var(--mb-1-5);
-  }
-
   .button {
     padding: 0.75rem 1.75rem;
   }
