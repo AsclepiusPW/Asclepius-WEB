@@ -1,0 +1,160 @@
+.leadingAside-createUser{
+    margin: 3rem 0 2rem 0;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.createUser-form{
+    flex-direction: column;
+    width: 50%;
+}
+
+.formCreate-title{
+    font-size: 2.3rem;
+    color: var(--green-aqua-color);
+    margin-bottom: 2rem;
+    text-align: center;
+}
+
+.formCreate-description{
+    width: 70%;
+    font-size: var(--small-font-size);
+    text-align: center;
+    margin-bottom: 2rem;
+}
+
+.formCreate-label{
+    flex-direction: column;
+    width: 90%;
+    margin-bottom: 1rem;
+}
+
+.formCreate-label h5 {
+    color: var(--green-dark);
+    align-self: flex-start;
+    margin-left: 12%;
+    margin-bottom: 0.4rem;
+}
+
+.formCreate-input{
+    width: 80%;
+    padding: 0.8rem 1rem;
+    border-radius: 0.5rem;
+    border: 2px solid var(--green-aqua-color);
+    font-size: var(--small-font-size);
+}
+
+.formCreate-input::placeholder{
+    color:var(--green-dark)
+}
+
+.inputPassword{
+    padding: 0 0.8rem;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--white-color);
+}
+
+.inputPassword input{
+    height: 2.6rem;
+    width: 90%;
+}
+
+.seePassowrd{
+    font-size: var(--normal-font-size);
+    color: var(--title-color);
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.seePassowrd:hover{
+    transform: scale(1.03);
+}
+
+.formCreate-checkbox{
+    flex-direction: row;
+    align-items: center;
+    width: 60%;
+    gap: 1rem;
+    font-size: var(--tiny-font-size);
+}
+
+.formCreate-button{
+    background-color: var(--green-aqua-color);
+    color: var(--white-color);
+    font-weight: bold;
+    padding: 0.8rem 1.5rem;
+    border-radius: 0.5rem;
+    cursor: pointer;
+    transition: all .3s;
+    margin-top: 2rem;
+}
+
+.formCreate-button:hover{
+    background-color: var(--green-dark);
+    transform: scale(1.05);
+}
+
+/*Aside de descrição*/
+.asideCreator-content{
+    width: 45%;
+    align-items: center;
+    justify-content: center;
+}
+
+.asideCreator-description{
+    width: 90%;
+    font-size: var(--small-font-size);
+    color: var(--title-color);
+    text-align: justify;
+}
+
+.asideCreator-description span{
+    color: var(--green-aqua-color);
+    font-weight: bold;
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For large devices */
+@media screen and (max-width: 992px) {
+    .formCreate-title{
+        font-size: 2rem;
+    }
+}
+
+/* For medium devices */
+@media screen and (max-width: 768px) {
+    .formCreate-description{
+        width: 80%;
+    }
+
+    .asideCreator-content{
+        display: none;
+    }
+
+    .createUser-form,.formCreate-label {
+        width: 100%;
+    }
+
+    .formCreate-label h5{
+        margin-left: 1rem;
+    }
+
+    .formCreate-input{
+        width: 90%;
+    }
+
+    .formCreate-checkbox{
+        width: 80%; 
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .formCreate-title{
+        font-size: 1.8rem;
+    }
+}
+
+/* For small devices */
+@media screen and (max-width: 370px) {}

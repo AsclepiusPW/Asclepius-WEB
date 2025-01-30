@@ -1,0 +1,117 @@
+.leadingAside-about{
+    margin: 3rem 0 2rem 0;
+    width: 100%;
+    align-items: center;
+    justify-content: space-around;
+}
+
+.imageAbout{
+    height: 30rem;
+    object-fit: cover;
+}
+
+.asideAbout-content{
+    flex-direction: column;
+    width: 50%;
+    gap: 2rem;
+}
+
+.contentAbout-title{
+    font-size: 3rem;
+    font-weight: bold;
+    margin-bottom: 1rem;
+}
+
+.contentAbout-description{
+    width: 90%;
+    font-size: var(--small-font-size);
+    color: var(--title-color);
+    text-align: justify;
+}
+
+.contentAbout-description span{
+    color: var(--green-aqua-color);
+    font-weight: bold;
+}
+
+.contentList-details{
+    width: 90%;
+    gap: 2rem;
+    justify-content: center;
+}
+
+.itemListDetails{
+    width: 6rem;
+    height: 6rem;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 0.5rem;
+    border-radius: 0.5rem;
+    color: var(--green-dark);
+    border: 3px solid var(--green-aqua-color);
+    background-color: var(--white-color);
+}
+
+.itemList-icon{
+    font-size: 1.5rem;
+}
+
+.itemList-title{
+    font-size: var(--smaller-font-size);
+    font-weight: bold;
+}
+
+.itemList-quantity{
+    text-align: center;
+    font-size: var(--tiny-font-size);
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For large devices */
+@media screen and (max-width: 992px) {
+    .imageAbout{
+        height: 25rem;
+    }
+
+    .contentAbout-title{
+        font-size: 2.5rem;
+    }
+
+    .contentAbout-description{
+        font-size: var(--smaller-font-size);
+    }
+
+    .itemListDetails{
+        width: 5rem;
+        height: 5rem;
+    }
+
+    .itemList-icon, .itemList-title{
+        font-size: var(--smaller-font-size);
+    }
+}
+
+/* For medium devices */
+@media screen and (max-width: 768px) {
+    .imageAbout{
+        display: none;
+    }
+
+    .asideAbout-content {
+        width: 100%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .leadingAside-home{
+        margin-top: 8rem;
+    }
+
+    .contentText-description {
+        width: 90%;
+    }
+}
+
+/* For small devices */
+@media screen and (max-width: 370px) {}

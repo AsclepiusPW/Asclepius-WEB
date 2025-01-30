@@ -1,0 +1,17 @@
+.SliderSwiper{
+    height: 100%;
+    width: 100%;
+}
+
+.mySwiper{
+    height: 100%;
+    width: 100%;
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For large devices */
+@media screen and (max-width: 992px) {
+    .mySwiper{
+        width: initial;
+    }
+}  
