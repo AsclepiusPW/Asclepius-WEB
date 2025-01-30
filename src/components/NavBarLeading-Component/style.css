@@ -1,0 +1,82 @@
+.leadingPage-menu {
+    width: 80vw;
+    position: fixed;
+    top: 0;
+    align-items: center;
+    justify-content: space-around;
+    z-index: var(--z-fixed);
+    background-color: var(--container-color);
+}
+
+.home {
+    width: 15rem;
+}
+
+.scrollHeader{
+    box-shadow: 0 -1px 4px rgba(0, 0, 0, 0.15);
+}
+
+.menu-contents {
+    align-items: center;
+    gap: 2.5rem;
+}
+
+.menu-list {
+    gap: 1rem;
+}
+
+.menuList-item {
+    cursor: pointer;
+    font-size: var(--small-font-size);
+    font-weight: var(--font-semi-bold);
+    transition: all .5s;
+}
+
+.item-navlink{
+    text-decoration: none;
+    color: var(--text-color);
+}
+
+.menuList-item:hover {
+    transform: scale(1.1);
+    color: var(--green-aqua-color);
+}
+
+.activeLink{
+    color: var(--green-aqua-color);
+}
+
+.menu-button a{
+    text-decoration: none;
+    color: var(--white-color);
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For large devices */
+@media screen and (max-width: 992px) {
+
+}
+
+/* For medium devices */
+@media screen and (max-width: 768px) {
+    .menu-list{
+        display: none;
+    }
+
+    .home{
+        width: 12rem;
+    }
+
+    .menu-button p{
+        font-size: var(--small-font-size);
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .leadingPage-menu{
+        justify-content: space-between;
+    }
+}
+
+/* For small devices */
+@media screen and (max-width: 370px) {}
