@@ -1,0 +1,33 @@
+.loading-datas-container{
+    width: 90%;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.loading-datas-logo{
+    width: 20rem;
+}
+
+.loading-datas-title {
+    color: var(--green-dark);
+    font-weight: initial;
+    text-align: center;
+    transition: all 0.3s ease-in-out;
+    animation: loadingData 1.2s infinite ease-in-out;
+}
+
+@keyframes loadingData {
+    0% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.05);
+    }
+    100% {
+        opacity: 0.6;
+        transform: scale(1);
+    }
+}
