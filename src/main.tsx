@@ -7,6 +7,8 @@ import './index.css'
 
 // ***Importando páginas do sistema
 import { LeadingPage } from './pages/LeadingPage-Page/index.tsx'
+import { UserProfilePage } from './pages/UserProfile-Page/index.tsx'
+import { HomePage } from './pages/HomePage-Page/index.tsx'
 
 // ***Criando rotas
 const router = createBrowserRouter([
@@ -17,6 +19,14 @@ const router = createBrowserRouter([
         path: "/",
         element: <LeadingPage/>
       },
+      {
+        path: "/home",
+        element: <HomePage/>
+      },
+      {
+        path: "/user",
+        element: <UserProfilePage/>
+      }
     ]
   }
 ]);

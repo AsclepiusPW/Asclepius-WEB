@@ -139,7 +139,6 @@ input {
 .container {
   max-width: 100vw;
   height: 100vh;
-  padding: 1.5rem;
   margin-left: auto;
   margin-right: auto;
 }
@@ -168,7 +167,6 @@ input {
   align-items: center;
   flex-direction: column;
   gap: 3rem;
-  overflow-y: auto;
 }
 
 .apresentationList{
@@ -189,6 +187,10 @@ input {
   height: 100%;
   grid-template-columns: 1fr auto;
   column-gap: 1.5rem;
+}
+
+.sectionSlidersPages{
+  width: 90rem;
 }
 
 /*=============== ANIMATION ===============*/
@@ -216,6 +218,44 @@ input {
 .button--flex {
   display: inline-flex;
   align-items: center;
+}
+
+.button-totality{
+  padding: 0.8rem 1rem;
+  background-color: var(--green-dark);
+  color: var(--white-color);
+  font-weight: bold;
+  border-radius: 2rem;
+  transition: all .5s;
+}
+
+.button-opacity{
+  padding: 0.6rem 1rem;
+  background-color: transparent;
+  color: var(--green-dark);
+  border: 3px solid var(--green-dark);
+  font-weight: bold;
+  border-radius: 2rem;
+  transition: all .5s;
+}
+
+.button-opacity a {
+  text-decoration: none;
+  color: var(--green-dark);
+}
+
+.button-totality a{
+  text-decoration: none;
+  color: var(--white-color);
+}
+
+.button-totality:hover{
+  background-color: var(--green-aqua-color);
+}
+
+.button-opacity:hover{
+  background-color: var(--green-aqua-color);
+  border: 3px solid var(--green-aqua-color);
 }
 
 /*=============== BREAKPOINTS ===============*/
