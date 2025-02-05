@@ -5,13 +5,9 @@ import React from 'react';
 import { Swiper, SwiperSlide } from 'swiper/react';
 
 //Import Swiper styles
-import 'swiper/css';
-import 'swiper/css/pagination';
-import 'swiper/css/navigation';
-import 'swiper/css/effect-fade';
 
 // import required modules
-import { Autoplay, Navigation, EffectFade } from 'swiper/modules';
+import { Autoplay, Navigation, EffectFade, Pagination } from 'swiper/modules';
 
 //Estlização
 import "./style.css";
@@ -40,10 +36,11 @@ export const OptionsDoctorsSlider: React.FC<props> = ({ delay, navigation }) => 
                     disableOnInteraction: false,
                 }}
                 navigation={navigation || false}
+                pagination={true}
                 effect="fade"
                 fadeEffect={{ crossFade: true }}
                 speed={3000}
-                modules={[Autoplay, Navigation, EffectFade]}
+                modules={[Autoplay, Navigation, EffectFade, Pagination]}
                 className="mySwiper"
             >
                 {optionsDoctorsData.map((doctor, index) => (

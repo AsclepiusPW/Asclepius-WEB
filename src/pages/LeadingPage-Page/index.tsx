@@ -37,12 +37,9 @@ export const LeadingPage = () => {
                 <LoginSection/>
 
                 <div className="optionsDoctors flex section" id="leading-review">
-                    <h3 className="optionsDoctors-title">Opinões dos nossos médicos</h3>
-
-
-                    {/* <div className="optionDoctors-content flex">
+                    <div className="sectionSlidersPages">
                         <OptionsDoctorsSlider/>
-                    </div> */}
+                    </div>
                 </div>
 
                 <Footer/>

@@ -1,0 +1,126 @@
+.filterSearchComponent-container{
+    width: 40%;
+    height: 15rem;
+    flex-direction: column;
+    border-radius: 1rem;
+    border: 0.2rem solid var(--white-color);
+}
+
+.containerButtons{
+    width: 100%;
+    height: 78%;
+    justify-content: space-around;
+    background-color: var(--white-color);
+    border-radius: 0.8rem;
+}
+
+.buttonItem{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 33%;
+    height: 98%;
+    border-radius: 0.8rem;
+    gap: 1.5rem;
+    cursor: pointer;
+    background-color: var(--container-color);
+    transition: all .5s;
+}
+
+.buttonItem-icon{
+    height: 3rem;
+}
+
+.buttonItem-title{
+    font-size: var(--smaller-font-size);
+    color: var(--green-dark);
+    text-align: center;
+    padding: 0 0.3rem;
+}
+
+.buttonItem:hover{
+    background-color: var(--white-color);
+    border: 3px solid var(--green-aqua-color);
+}
+
+.activeSelect{
+    background-color: var(--white-color);
+    border: 3px solid var(--green-aqua-color);
+}
+
+/*Search*/
+.containerInput-Search{
+    width: 100%;
+    height: 22%;
+    padding: 0 0.5rem;
+}
+
+.input-Search{
+    height: 97%;
+    width: 98%;
+    background-color: var(--container-color);
+    font-size: var(--small-font-size);
+    color: var(--green-dark);
+}
+
+.input-Search::placeholder{
+    color: var(--green-dark);
+}
+
+.button-Search{
+    height: 97%;
+    width: 2.5rem;
+    color: var(--green-dark);
+    cursor: pointer;
+    background-color: transparent;
+    transition: all .3s;
+}
+
+.button-Search:hover{
+    transform: scale(1.1);
+    color: var(--green-aqua-color);
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For large devices */
+@media screen and (max-width: 992px) {
+    .filterSearchComponent-container{
+        width: 60%;
+    }
+}
+
+/* For medium devices */
+@media screen and (max-width: 768px) {
+    .filterSearchComponent-container{
+        width: 70%;
+        height: 12rem;
+    }
+    
+    .buttonItem-icon{
+        height: 2.5rem;
+    }
+
+    .buttonItem-title{
+        font-size: var(--tiny-font-size);
+    }
+
+    .input-Search{
+        font-size: var(--smaller-font-size);
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .filterSearchComponent-container{
+        width: 100%;
+        height: 10rem;
+    }
+
+    .input-Search{
+        font-size: var(--tiny-font-size);
+    }
+}
+
+/* For small devices */
+@media screen and (max-width: 370px) {
+    
+}
