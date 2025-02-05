@@ -1,0 +1,115 @@
+.informationsProfile-container{
+    width: 98%;
+    padding: 2rem 0;
+    border-radius: 2rem;
+    background-color: var(--white-color);
+    margin-bottom: 4rem;
+}
+
+.containerApresentation-icon{
+    width: 40%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 3rem;
+    border-right: 3px solid var(--green-dark);
+}
+
+.apresenatation-icon{
+    width: 8rem;
+}
+
+.apresentation-title{
+    color: var(--green-dark);
+    text-align: center;
+}
+
+.apresentationContainer-user{
+    position: relative;
+    width: 60%;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+}
+
+.containerUser-image{
+    width: 15rem;
+    height: 15rem;
+    border-radius: 50%;
+    border: 0.2rem solid var(--white-color);
+    object-fit: cover;
+    position: absolute;
+    top: -5rem;
+}
+
+.apresentationContent{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    width: 100%;
+    gap:1rem;
+    margin-top: 12rem;
+    margin-bottom: 1rem;
+}
+
+.containerUser-title{
+    text-align: center;
+    color: var(--green-dark);
+    margin-top: 1rem;
+    margin-bottom: 2rem;
+}
+
+.containerUser-details{
+    color: var(--green-dark);
+}
+.containerUser-details span{
+    font-weight: initial;
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For large devices */
+@media screen and (max-width: 992px) {
+    .apresenatation-icon{
+        width: 6rem;
+    }
+
+    .containerUser-image{
+        width: 12rem;
+        height: 12rem;
+    }
+
+    .apresentationContent{
+        margin-top: 8rem;
+    }
+}
+
+/* For medium devices */
+@media screen and (max-width: 768px) {
+    
+}
+
+@media screen and (max-width: 576px) {
+    .containerApresentation-icon{
+        display: none;
+    }
+    
+    .apresentationContainer-user{
+        width: 100%;
+    }
+
+    .containerUser-title{
+        font-size: var(--h3-font-size);
+        margin-top: 0.5rem;
+        margin-bottom: 0.5rem;
+    }
+
+    .containerUser-details{
+        font-size: var(--h4-font-size);
+    }
+}
+
+/* For small devices */
+@media screen and (max-width: 370px) {
+    
+}
