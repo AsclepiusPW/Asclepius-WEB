@@ -18,8 +18,14 @@ import { AuthenticateUserDTO } from "../../types/userTypes";
 //Validação
 import { authenticateUserschema } from "../../validations/authenticateUserValidator";
 
+//Contextos
+import { useAuth } from "../../Contexts/AuthContext";
+
 //Definindo classe
 export const LoginSection = () => {
+    //Definindo o contexto
+    const { signIn, loading } = useAuth();
+
     //State
     const [visiblePassword, setVisiblePassword] = useState<boolean>(false);
 
@@ -28,14 +34,24 @@ export const LoginSection = () => {
     const {
         register,
         handleSubmit,
+        setError,
         formState: { errors },
     } = useForm<AuthenticateUserDTO>({
         resolver: yupResolver(authenticateUserschema),
     });
 
     // Função de envio do formulário
-    const onSubmit: SubmitHandler<AuthenticateUserDTO> = (data) => {
-        console.log("Dados de login enviados:", data);
+    const onSubmit: SubmitHandler<AuthenticateUserDTO> = async (data) => {
+        try{
+            await signIn(data);
+        } catch (error: any) {
+            if (error?.message === "User does not exist") {
+                setError("email", { type: "manual", message: "Email ou usuário não encontrado" });
+            }
+            if (error?.message === "Invalid password") {
+                setError("password", { type: "manual", message: "Senha inválida" });
+            }
+        }
     };
 
     return (
@@ -82,7 +98,7 @@ export const LoginSection = () => {
                 </p>
 
                 <button type="submit" className="loginUser-button">
-                    Fazer Login
+                    {loading ? "Carregando..." : "Entrar"}
                 </button>
             </form>
         </section>

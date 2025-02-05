@@ -13,7 +13,7 @@ type formCreateUser = {
     email: string;
     telefone: string;
     confirmPassword: string; 
-    acceptLocation?: boolean
+    acceptLocation?: boolean;
 }
 
 //Validações
@@ -22,25 +22,83 @@ import { createUserschema } from "../../validations/createUserValidations";
 //Ícones
 import { LuEye, LuEyeClosed } from "react-icons/lu";
 
+//Contexto
+import { useUser } from "../../Contexts/UserContext";
+
 //Definindo class
 export const CreateUserSection = () => {
+    //Defindo funções do contexto
+    const { createNewUser } = useUser();
+
     //State
     const [visiblePassword, setVisiblePassword] = useState<boolean>(false);
     const [visibleConfirmPassword, setVisibleConfirmPassword] = useState<boolean>(false);
+    const [acceptLocation, setAcceptLocation] = useState<boolean>(false);
+    const [loading, setLoading] = useState<boolean>(false);
 
     //Funções
     // Configuração do formulário com react-hook-form
     const {
         register,
         handleSubmit,
+        setError,
         formState: { errors },
     } = useForm<formCreateUser>({
         resolver: yupResolver(createUserschema),
     });
 
+    // Capturar a localização quando o usuário aceita compartilhar
+    const getLocation = async (): Promise<{ latitude?: number; longitude?: number }> => {
+        return new Promise((resolve) => {
+            if (acceptLocation && navigator.geolocation) {
+                navigator.geolocation.getCurrentPosition(
+                    (position) => {
+                        resolve({
+                            latitude: position.coords.latitude,
+                            longitude: position.coords.longitude
+                        });
+                    },
+                    (error) => {
+                        console.error("Erro ao obter localização:", error);
+                        resolve({}); // Retorna um objeto vazio caso haja erro
+                    }
+                );
+            } else {
+                resolve({});
+            }
+        });
+    };
+
     // Função de envio do formulário
-    const onSubmit: SubmitHandler<formCreateUser> = (data) => {
-        console.log("Dados enviados:", data);
+    const onSubmit: SubmitHandler<formCreateUser> = async (data) => {
+        setLoading(true);
+        // Aguarda a obtenção da localização
+        const location = await getLocation();
+        
+        if (!location.latitude || !location.longitude) {
+            setError("acceptLocation", { type: "manual", message: "Aceite compartilhar localização" });
+            return;
+        }
+
+        try {
+            await createNewUser({
+                email: data.email,
+                password: data.password,
+                name: data.name,
+                telefone: data.telefone,
+                latitude: location.latitude,
+                longitude: location.longitude,
+            });
+        } catch (error: any) {
+            if (error?.message === "Existing user with this e-mail") {
+                setError("email", { type: "manual", message: "Email já cadastrado" });
+            }
+            if (error?.message === "Existing user with this telefone") {
+                setError("telefone", { type: "manual", message: "Telefone já cadastrado" });
+            }   
+        } finally {
+            setLoading(false);
+        }
     };
 
     return (
@@ -116,7 +174,7 @@ export const CreateUserSection = () => {
 
                 <label className="formCreate-label flex">
                     <div className="formCreate-checkbox flex">
-                        <input type="checkbox" {...register("acceptLocation")} />
+                        <input type="checkbox" {...register("acceptLocation")} onChange={() => setAcceptLocation(!acceptLocation)}/>
                         <p className="checkbox-title">
                             Permita o sistema acessar a sua localização para fornecer as informações pertinentes para sua região.
                         </p>
@@ -125,7 +183,7 @@ export const CreateUserSection = () => {
                 </label>
 
                 <button type="submit" className="formCreate-button">
-                    Criar perfil
+                    {loading ? "Carregando..." : "Cadastrar"}
                 </button>
             </form>
 
