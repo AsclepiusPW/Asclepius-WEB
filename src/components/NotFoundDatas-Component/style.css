@@ -1,0 +1,20 @@
+.notFoundDatas-component{
+    width: 90%;
+    flex-direction: column;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.notFoundDatas-logo{
+    width: 20rem;
+}
+
+.notFoundDatas-icon{
+    height: 8rem;
+}
+
+.notFoundDatas-title {
+    color: var(--green-dark);
+    font-weight: initial;
+    text-align: center;
+}
