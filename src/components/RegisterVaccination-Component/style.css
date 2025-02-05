@@ -1,0 +1,63 @@
+.registerVaccination-component{
+    width: 100%;
+    height: auto;
+    padding: 1.5rem 0;
+    border-radius: 1rem;
+    flex-direction: column;
+    gap: 1rem;
+    background: linear-gradient(90deg, #c8eddb, #FFFFFF);
+}
+
+.registerVaccination-title{
+    width: 100%;
+    text-align: center;
+    color: var(--green-dark);
+}
+
+.registerVaccination-container{
+    width: 100%;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.registerVaccination-icon{
+    width: 5rem;
+}
+
+.registerVaccination-content{
+    flex-direction: column;
+    width: 40%;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.3rem;
+}
+
+.registerVaccination-details,
+.registerVaccination-description{
+    font-weight: bold;
+    color: var(--green-dark);
+}
+
+.registerVaccination-description{
+    width: 85%;
+}
+
+.registerVaccination-description span{
+    margin-top: 0.3rem;
+    font-size: var(--small-font-size);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+}
+
+.registerVaccination-title span,
+.registerVaccination-details span,
+.registerVaccination-description span{
+    font-weight: initial;
+    font-style: italic;
+    text-align: justify;
+    color: var(--title-color);
+}
