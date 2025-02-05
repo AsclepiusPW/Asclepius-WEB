@@ -7,6 +7,7 @@
     border-radius: 2rem;
     display: flex;
     align-items: flex-end; /* Alinha os elementos na parte inferior */
+    margin-top: 8rem;
 }
 
 .imageDoctor {
@@ -72,8 +73,9 @@
         height: 70%;
     }
 
-    .contentDescription{
-      font-size: var(--small-font-size);   
+    .contentDescription,
+    .nameDoctor-action{
+      font-size: var(--tiny-font-size);   
     }
 }
 

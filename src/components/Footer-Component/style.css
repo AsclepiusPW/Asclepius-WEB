@@ -1,5 +1,6 @@
 .footerPage{
     width: 100%;
+    padding: 2rem 0;
     justify-content: space-around;
 }
 
@@ -44,6 +45,10 @@
 }
 
 @media screen and (max-width: 576px) {
+    .footerPage{
+        width: 90%;
+    }
+
     .footerPage-logo{
         display: none;
     }
