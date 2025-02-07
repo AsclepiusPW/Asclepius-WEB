@@ -9,6 +9,7 @@ import './index.css'
 import { LeadingPage } from './pages/LeadingPage-Page/index.tsx'
 import { UserProfilePage } from './pages/UserProfile-Page/index.tsx'
 import { HomePage } from './pages/HomePage-Page/index.tsx'
+import { UserEditPage } from './pages/UserEdit-Page/index.tsx'
 
 // ***Criando rotas
 const router = createBrowserRouter([
@@ -26,6 +27,10 @@ const router = createBrowserRouter([
       {
         path: "/user",
         element: <UserProfilePage/>
+      },
+      {
+        path: "/edit",
+        element: <UserEditPage/>
       }
     ]
   }
