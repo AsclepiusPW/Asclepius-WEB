@@ -15,7 +15,7 @@ export const findUserProfileImage = async (profileImage: string) => {
             const response = await findProfileImage(profileImage);
 
             if (response?.status === 200) {
-                return `${portApi}${profileImage}`;
+                return `${portApi}images/${profileImage}`;
             } else {
                 return profile;
             }
