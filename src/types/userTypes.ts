@@ -28,4 +28,4 @@ export type AuthenticateUserDTO = Pick<UserDTO, 'email' | 'password'>;
 export type UpdateUserDTO = Omit<UserDTO, 'id' | 'password' | 'image' | 'vaccination' | 'requestReservation' | 'createdAt' | 'updatedAt'>;;
 
 //Definindo tipo para ataulização de senaha
-export type UpdatePasswordDTO = Pick<UserDTO, 'email' | 'password'>;
+export type UpdatePasswordDTO = Pick<UserDTO, 'email' | 'password'> & { confirmPassword: string };
