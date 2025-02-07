@@ -1,0 +1,95 @@
+.apresentationUpdatePassword{
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    position: relative;
+    width: 100%;
+    height: 100vh;
+}
+
+.updatePassword-image{
+    width: 12rem;
+}
+
+.formUpdatePassword{
+    flex-direction: column;
+    align-items: center;
+    justify-self: center;
+    width: 50%;
+}
+
+.formUpdatePassword-label{
+    flex-direction: column;
+    width: 90%;
+    margin-bottom: 1rem;
+}
+
+.formUpdatePassword-label h5{
+    color: var(--green-dark);
+    align-self: flex-start;
+    margin-left: 12%;
+    margin-bottom: 0.4rem;
+}
+
+.formUpdatePassword-input{
+    width: 80%;
+    padding: 0.8rem 1rem;
+    border-radius: 0.5rem;
+    border: 2px solid var(--green-aqua-color);
+    font-size: var(--small-font-size);
+}
+
+.formUpdatePassword-input::placeholder{
+    color:var(--green-dark)
+}
+
+.inputPassword{
+    padding: 0 0.8rem;
+    align-items: center;
+    justify-content: space-between;
+    background-color: var(--white-color);
+}
+
+.inputPassword input{
+    height: 2.6rem;
+    width: 90%;
+}
+
+.seePassowrd{
+    font-size: var(--normal-font-size);
+    color: var(--title-color);
+    cursor: pointer;
+    transition: all .3s;
+}
+
+.seePassowrd:hover{
+    transform: scale(1.03);
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For large devices */
+@media screen and (max-width: 992px) {
+    .formUpdatePassword{
+        width: 70%;
+    }
+}
+
+/* For medium devices */
+@media screen and (max-width: 768px) {
+    .formUpdatePassword{
+        width: 80%;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .formUpdatePassword{
+        width: 90%;
+    }
+}
+
+/* For small devices */
+@media screen and (max-width: 370px) {
+    .formUpdatePassword{
+        width: 100%;
+    }
+}
