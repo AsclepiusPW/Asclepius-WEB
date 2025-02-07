@@ -7,7 +7,7 @@ import Cookies from "js-cookie";
 import { CreateUserDTO, UserDTO } from "../types/userTypes";
 
 //Serviços
-import { createUser, listUser } from "../Services/UserServices";
+import { createUser, listUser, updateDataUser, updateProfileImage } from "../Services/UserServices";
 
 //Contextos
 import { useAuth } from "./AuthContext";
@@ -23,6 +23,8 @@ interface UserContextProps {
     setUser: React.Dispatch<React.SetStateAction<UserDTO | null>>;
     createNewUser: (data: CreateUserDTO) => Promise<void>;
     loadUserByToken: () => Promise<void>;
+    updadeProfileImage: (imageFile: File) => Promise<void>;
+    editUser: (data: {name: string, email: string, telefone: string}) => Promise<void>;
 }
 
 //Criando o contexto
@@ -94,7 +96,6 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
                 const response = await listUser(token);
                 if (response) {
                     //Salvando no Cokkies
-                    localStorage.setItem("user", JSON.stringify(response));
                     Cookies.set("detailsUser", JSON.stringify(response), { expires: 1 });
                     setUser(response);
                 }
@@ -123,6 +124,68 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         } finally {
             setLoading(false);
         }
+    };
+
+    //Função para editar usuário
+    const editUser = async (data: {name: string, email: string, telefone: string}) => {
+        setLoading(true);
+        if (!user || !token) return;
+    
+        try {
+            toast.loading("Editando usuário...");
+            const response = await updateDataUser({...data, latitude: user.latitude, longitude: user.longitude}, token);
+            const {updateUser} = response;
+
+            if(updateUser) {
+                toast.dismiss();
+                const newDataUser = {...user, ...updateUser};
+                Cookies.set("detailsUser", JSON.stringify(newDataUser), { expires: 1 });
+                setUser(newDataUser);
+                toast.success("Usuário editado com sucesso!");
+            }
+        } catch (error) {
+            toast.dismiss();
+            toast.error("Erro ao editar usuário, tente novamente mais tarde.");
+            if (error instanceof Error) {
+                if (error.message === "E-mail is already being used by another user" || error.message === "Phone is already being used by another user") {
+                    throw new Error(error.message);
+                } else {
+                    handleUserContextErrors(error);
+                }
+            }
+        }finally{
+            setLoading(false);
+        }
+    };
+
+    //Função para editar a imagem de perfil de um usuário
+    const updadeProfileImage = async (imageFile: File) => {
+        if (!imageFile || !token || !user) {
+            console.error("Dados não disponívies");
+            return;
+        }
+
+        setLoading(true);
+        try {
+            toast.loading("Atualizando imagem...");
+            const response = await updateProfileImage(imageFile, token);
+            const {image} = response;
+
+            if (image) {
+                toast.dismiss();
+                setUser({...user, image});
+                //Salvando no Cookies
+                Cookies.set("detailsUser", JSON.stringify({...user, image}), { expires: 1 });
+    
+                toast.success("Imagem de perfil atualizada!");
+            }
+
+        } catch (error) {
+            console.error("Error ao ataulizar a imagem do usuário: ", error);
+            handleUserContextErrors(error);
+        } finally {
+            setLoading(false);
+        }
     }
 
     // Função para lidar com erros
@@ -148,7 +211,7 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
     }, [user]);
 
     return (
-        <UserContext.Provider value={{ user, profileImage, setUser, createNewUser, loadUserByToken, loading }}>
+        <UserContext.Provider value={{ user, profileImage, setUser, createNewUser, loadUserByToken , editUser, updadeProfileImage, loading }}>
             {children}
         </UserContext.Provider>
     )
