@@ -154,10 +154,14 @@ export const Header: React.FC<Props> = ({ userVisibility, actionPage, functionSe
 
                                 <img src={videoConferencia} alt="Video conferência" className="pagesUser-img" />
 
-                                <h2 className="headerUser-title">Olá, <span>User</span> !</h2>
+                                <h2 className="headerUser-title">Olá, <span>{user?.name.split(" ")[0]}</span> !</h2>
                             </div>
 
-                            <button className="button-totality" onClick={() => navigate("/edit")}>Editar perfil</button>
+                            {actionPage === "edit" ? (
+                                <button className="button-totality" onClick={() => navigate("/user")}>Ver perfil</button>
+                            ) : (
+                                <button className="button-totality" onClick={() => navigate("/edit")}>Editar perfil</button>
+                            )}
                         </div>
                     )}
 

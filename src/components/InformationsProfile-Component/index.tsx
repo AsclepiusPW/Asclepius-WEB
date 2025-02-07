@@ -1,3 +1,6 @@
+//Importações
+import { useNavigate } from "react-router-dom";
+
 //Estilização
 import "./style.css";
 
@@ -10,6 +13,9 @@ import { useUser } from "../../Contexts/UserContext";
 
 //Class
 export const InformationsProfile = () => {
+    //Navegação
+    const navigate = useNavigate();
+
     //Definindo o contexto
     const { user, profileImage } = useUser();
 
@@ -26,7 +32,7 @@ export const InformationsProfile = () => {
                 <img src={ profileImage ? profileImage : userDefault} alt="Imagem de perfil" className="containerUser-image" />
             
                 <div className="apresentationContent flex">
-                    <button className="button-opacity">
+                    <button className="button-opacity" onClick={() => {navigate("/edit")}}>
                         Editar perfil
                     </button>
 
