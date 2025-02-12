@@ -14,7 +14,7 @@ import { VaccineDTO } from "../../types/vaccineTypes";
 import { EventVaccinationCalendarDTO } from "../../types/eventVaccinationCalendar";
 
 //Icones
-import { IoMenu } from "react-icons/io5";
+import { IoMenu, IoSearchOutline } from "react-icons/io5";
 import { FaHouse, FaUser } from "react-icons/fa6";
 import { FiLogOut } from "react-icons/fi";
 import { TbVaccine } from "react-icons/tb";
@@ -116,7 +116,7 @@ export const Header: React.FC<Props> = ({ userVisibility, actionPage, functionSe
                     <li className="headerPagesList-item">
                         <p className={actionPage === "Vaccine" ? "active-item listItemIcon" : "listItemIcon"}><TbVaccine /></p>
                         <a
-                            href=""
+                            href="/vaccine"
                             className={actionPage === "Vaccine" ? "active-item" : "listItemLink"}
                         >Vacinas</a>
                     </li>
@@ -180,7 +180,7 @@ export const Header: React.FC<Props> = ({ userVisibility, actionPage, functionSe
                                 <button
                                     type="submit"
                                     className="headerSearchForm-button">
-                                    P
+                                    <IoSearchOutline/>
                                 </button>
                             </form>
                         </div>
