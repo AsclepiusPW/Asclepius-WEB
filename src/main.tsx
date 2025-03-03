@@ -11,8 +11,10 @@ import { UserProfilePage } from './pages/UserProfile-Page/index.tsx'
 import { HomePage } from './pages/HomePage-Page/index.tsx'
 import { UserEditPage } from './pages/UserEdit-Page/index.tsx'
 import { UpdatePasswordPage } from './pages/UpdatePassword-Page/index.tsx'
+import { RequestVaccinationPage } from './pages/RequestVaccination-Page/index.tsx'
 import { VaccinesPage } from './pages/Vaccines-Page/index.tsx'
 import { EventsPages } from './pages/Events-Page/index.tsx'
+import { RegisterVaccinationPage } from './pages/RegisterVaccination-Page/index.tsx'
 
 // ***Criando rotas
 const router = createBrowserRouter([
@@ -38,6 +40,14 @@ const router = createBrowserRouter([
       {
         path: "/edit",
         element: <UserEditPage/>
+      },
+      {
+        path: "/requestVaccination",
+        element: <RequestVaccinationPage/>
+      },
+      {
+        path: "/registerVaccination",
+        element: <RegisterVaccinationPage/>
       },
       {
         path: "/vaccine",
