@@ -1,6 +1,7 @@
 //Importações
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { formatDate } from "../../Utils/formatDate";
 
 //Estilização
 import "./style.css";
@@ -21,6 +22,9 @@ type Props = {
 
 //Class
 export const RegisterVaccination = ({ vaccination }: Props) => {
+    //Definindo navegação
+    const navigate = useNavigate();
+
     return (
         <div className="registerVaccination-component flex">
             <h3 className="registerVaccination-title">
@@ -41,7 +45,7 @@ export const RegisterVaccination = ({ vaccination }: Props) => {
                     <p className="registerVaccination-details">
                        <MdMedicalInformation/> Data: 
                             <span>
-                                {vaccination ? vaccination.date : " 00/00/0000"}
+                                {vaccination ? formatDate(vaccination.date) : " 00/00/0000"}
                             </span>
                     </p>
                     <p className="registerVaccination-details">

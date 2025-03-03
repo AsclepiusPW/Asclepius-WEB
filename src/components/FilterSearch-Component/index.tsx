@@ -19,13 +19,27 @@ interface Props {
     buttonActionFilterOne: () => void;
     buttonActionFilterTwo: () => void;
     buttonActionFilterThree: () => void;
-    functionFilter: () => void;
+    functionFilter: (query: string) => void;
 }
 
 //Class
 export const FilterSearch = ({filterEntity, buttonActionFilterOne, buttonActionFilterTwo, buttonActionFilterThree, functionFilter}: Props) => {
     const [filter, setFilter] = useState("")
     const [activeButton, setActiveButton] = useState("");
+
+    //Funções
+    //Pesquisar de fato o que se vem do input
+        const handleSubmitForm = (e: React.FormEvent<HTMLFormElement>) => {
+            e.preventDefault();
+    
+            if (filter) {
+                try {
+                    functionFilter(filter);
+                } catch (error) {
+                    console.error("Error ao listar as respostas da pesquisa: ", error);
+                }
+            }
+        };
 
     return(
         <div className="filterSearchComponent-container flex">
@@ -70,7 +84,7 @@ export const FilterSearch = ({filterEntity, buttonActionFilterOne, buttonActionF
                 </div>
             </div>
 
-            <form className="containerInput-Search flex" onSubmit={functionFilter}>
+            <form className="containerInput-Search flex" onSubmit={handleSubmitForm}>
                 <input 
                     type="text" 
                     placeholder={filterEntity === "User" ? "Pesquisar um registro entre suas vacinações" : "Pesquise eventos por uma vacina específica"} 

@@ -8,6 +8,21 @@
     margin-top: 1rem;
 }
 
+.status-pending span {
+    font-weight: bold;
+    color: #fff7d6; /* Amarelo claro */
+}
+
+.status-approved span {
+    font-weight: bold;
+    color: #d4f8d4; /* Verde claro */
+}
+
+.status-rejected span {
+    font-weight: bold;
+    color: #f8d4d4; /* Vermelho claro */
+}
+
 .request-vaccination-header{
     width: 90%;
     justify-content: space-between;
@@ -54,4 +69,19 @@
     font-weight: initial;
     font-style: italic;
     font-size: var(--small-font-size);
+}
+
+.status-pending span {
+    font-weight: bold;
+    color: var(--title-color);
+}
+
+.status-approved span {
+    font-weight: bold;
+    color: #d4f8d4; /* Verde claro */
+}
+
+.status-rejected span {
+    font-weight: bold;
+    color: #f8d4d4; /* Vermelho claro */
 }

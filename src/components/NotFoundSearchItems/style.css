@@ -1,0 +1,17 @@
+.not-found-search-items{
+    width: 100%;
+    height: auto;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1rem;
+}
+
+.not-found-search-items h1,
+.not-found-search-items h3{
+    color: #5d5858;
+}
+
+.not-found-search-items p {
+    font-size: 3rem;
+}
