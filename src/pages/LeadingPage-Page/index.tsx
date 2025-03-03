@@ -6,7 +6,6 @@ import "./style.css";
 //Componentes
 import { NavBarLeading } from "../../components/NavBarLeading-Component";
 import { ScrollUp } from "../../components/ScrollUp-Component";
-import { OptionDoctor } from "../../components/OptionDoctor-Component";
 import { Footer } from "../../components/Footer-Component";
 
 //Sections
@@ -16,7 +15,6 @@ import { CreateUserSection } from "../../sections/CreateUser-Section";
 import { LoginSection } from "../../sections/Login-Section";
 
 //Types
-import { optionsDoctorsData } from "../../types/optionsDoctors";
 import { OptionsDoctorsSlider } from "../../Sliders/OptionsDoctors-slider";
 
 //Props

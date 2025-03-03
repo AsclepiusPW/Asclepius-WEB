@@ -254,6 +254,7 @@ input {
 }
 
 .button-opacity:hover{
+  color: var(--white-color);
   background-color: var(--green-aqua-color);
   border: 3px solid var(--green-aqua-color);
 }

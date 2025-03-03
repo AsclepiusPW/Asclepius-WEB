@@ -9,15 +9,18 @@ import { UserProvider } from "./Contexts/UserContext";
 
 register();
 import 'swiper/swiper-bundle.css';
+import { VaccineProvider } from "./Contexts/VaccineContext";
 
 function App() {
   return (
     <>
       <AuthProvider>
         <UserProvider>
-          <Outlet/>
-          <ToastContainer theme="dark"/>
-        </UserProvider>
+          <VaccineProvider>
+            <Outlet/>
+            <ToastContainer theme="dark"/>
+          </VaccineProvider>
+          </UserProvider>
       </AuthProvider>
     </>
   )

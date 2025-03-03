@@ -44,7 +44,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
                     await checkTokenValidity(storedToken);
 
                     // Redireciona apenas se o usuário não estiver na página Home
-                    if (location.pathname === "/") {
+                    if (location.pathname === "/" || location.pathname === "/password") {
                         navigate("/home"); //Trocar para home
                     }
                 } catch (error) {
@@ -52,7 +52,7 @@ export const AuthProvider: React.FC<AuthProviderProps> = ({ children }) => {
                 }
             } else {
                 setLoading(false);
-                if (location.pathname !== "/") {
+                if (location.pathname !== "/" && location.pathname !== "/password") {
                     navigate("/"); // Redireciona para Login apenas se necessário
                 }
             }

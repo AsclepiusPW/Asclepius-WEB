@@ -5,7 +5,7 @@ import { apiAsclepius } from "../connection/axios";
 import { getAuthHeaders } from "./UtilsServices";
 
 //Types
-import { CreateUserDTO, AuthenticateUserDTO, UpdateUserDTO } from "../types/userTypes";
+import { CreateUserDTO, AuthenticateUserDTO, UpdateUserDTO, UpdatePasswordDTO } from "../types/userTypes";
 
 //Estrutura base de acesso a api
 const baseApi = "user";
@@ -45,25 +45,26 @@ export const authenticateUser = async (data: AuthenticateUserDTO) => {
 };
 
 //Método para atualizar a senha do usuário
-// export const updateUserPassword = async (data: UserDTO) => {
-//     try {
-//         const response = await apiAsclepius.put(`/${baseApi}/password`, data);
-//         return response.data;
-//     } catch (error: any) {
-//         // Verifique se o erro é uma resposta da API
-//         if (error.response) {
-//             throw new Error(error.response.data.error || "Erro ao atualizar senha");
-//         } else {
-//             // Se o erro não for relacionado a uma resposta da API, você pode retornar um erro genérico
-//             throw new Error("Erro desconhecido durante a atualização da senha");
-//         }
-//     }
-// };
+export const updateUserPassword = async (data: UpdatePasswordDTO) => {
+    try {
+        const response = await apiAsclepius.patch(`${baseApi}/resetPassword`, data);
+        return response;
+    } catch (error: any) {
+        console.log("Error: ", error);
+        // Verifique se o erro é uma resposta da API
+        if (error.response) {
+            throw new Error(error.response.data.error || "Erro ao atualizar senha");
+        } else {
+            // Se o erro não for relacionado a uma resposta da API, você pode retornar um erro genérico
+            throw new Error("Erro desconhecido durante a atualização da senha");
+        }
+    }
+};
 
 //Método para buscar as imagens de usuário
 export const findProfileImage = async (image: string) => {
     try {
-        const response = await apiAsclepius.get(`/${image}`);
+        const response = await apiAsclepius.get(`images/${image}`);
         return response;
     } catch (error: any) {
         if (error.response) {
@@ -90,10 +91,10 @@ export const tokenIsValid = async (token: string) => {
 };
 
 //Método para atualizar usuario
-export const updateUser = async (data: UpdateUserDTO, token: string) => {
+export const updateDataUser = async (data: UpdateUserDTO, token: string) => {
     try {
         const response = await apiAsclepius.put(`${baseApi}/update`, data, getAuthHeaders(token));
-        return response.data.updateUser;
+        return response.data;
     } catch (error: any) {
         // Verifique se o erro é uma resposta da API
         if (error.response) {
@@ -122,9 +123,17 @@ export const listUser = async (token: string) => {
 };
 
 //Método para ataulizar imagem de usuário
-export const updateProfileImage = async (image: string, token: string) => {
+export const updateProfileImage = async (image: File, token: string) => {
     try {
-        const response = await apiAsclepius.put(`${baseApi}/upload`, image, getAuthHeaders(token));
+        const formData = new FormData();
+        formData.append("image", image);
+
+        const response = await apiAsclepius.patch(`${baseApi}/upload`, formData, {
+            headers: {
+                Authorization: `Bearer ${token}`,
+                'Content-Type': 'multipart/form-data',
+            },
+        });
         return response.data;
     } catch (error: any) {
         // Verifique se o erro é uma resposta da API

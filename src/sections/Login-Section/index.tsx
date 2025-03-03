@@ -94,7 +94,7 @@ export const LoginSection = () => {
                 </label>
 
                 <p className="seeSetPassword">
-                    Esqueceu sua senha? <a href="">Clique aqui</a>
+                    Esqueceu sua senha? <a href="/password">Clique aqui</a>
                 </p>
 
                 <button type="submit" className="loginUser-button">

@@ -44,6 +44,7 @@
     font-size: var(--small-font-size);
     font-weight: var(--font-semi-bold);
     transition: all .5s;
+    cursor: pointer;
 }
 
 .listItemLink:hover{

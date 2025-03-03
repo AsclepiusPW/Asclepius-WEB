@@ -14,7 +14,7 @@ import { VaccineDTO } from "../../types/vaccineTypes";
 import { EventVaccinationCalendarDTO } from "../../types/eventVaccinationCalendar";
 
 //Icones
-import { IoMenu } from "react-icons/io5";
+import { IoMenu, IoSearchOutline } from "react-icons/io5";
 import { FaHouse, FaUser } from "react-icons/fa6";
 import { FiLogOut } from "react-icons/fi";
 import { TbVaccine } from "react-icons/tb";
@@ -116,7 +116,7 @@ export const Header: React.FC<Props> = ({ userVisibility, actionPage, functionSe
                     <li className="headerPagesList-item">
                         <p className={actionPage === "Vaccine" ? "active-item listItemIcon" : "listItemIcon"}><TbVaccine /></p>
                         <a
-                            href=""
+                            href="/vaccine"
                             className={actionPage === "Vaccine" ? "active-item" : "listItemLink"}
                         >Vacinas</a>
                     </li>
@@ -124,7 +124,7 @@ export const Header: React.FC<Props> = ({ userVisibility, actionPage, functionSe
                     <li className="headerPagesList-item">
                         <p className={actionPage === "Event" ? "active-item listItemIcon" : "listItemIcon"}><MdEvent /></p>
                         <a
-                            href=""
+                            href="/event"
                             className={actionPage === "Event" ? "active-item" : "listItemLink"}
                         >Eventos</a>
                     </li>
@@ -154,10 +154,14 @@ export const Header: React.FC<Props> = ({ userVisibility, actionPage, functionSe
 
                                 <img src={videoConferencia} alt="Video conferência" className="pagesUser-img" />
 
-                                <h2 className="headerUser-title">Olá, <span>User</span> !</h2>
+                                <h2 className="headerUser-title">Olá, <span>{user?.name.split(" ")[0]}</span> !</h2>
                             </div>
 
-                            <button className="button-totality" onClick={() => navigate("/edit")}>Editar perfil</button>
+                            {actionPage === "edit" ? (
+                                <button className="button-totality" onClick={() => navigate("/user")}>Ver perfil</button>
+                            ) : (
+                                <button className="button-totality" onClick={() => navigate("/edit")}>Editar perfil</button>
+                            )}
                         </div>
                     )}
 
@@ -176,7 +180,7 @@ export const Header: React.FC<Props> = ({ userVisibility, actionPage, functionSe
                                 <button
                                     type="submit"
                                     className="headerSearchForm-button">
-                                    P
+                                    <IoSearchOutline/>
                                 </button>
                             </form>
                         </div>

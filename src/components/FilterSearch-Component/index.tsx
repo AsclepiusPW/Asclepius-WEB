@@ -15,7 +15,7 @@ import { CiSearch } from "react-icons/ci";
 
 //Props
 interface Props {
-    filterEntity: "Vaccine" | "User";
+    filterEntity: "Event" | "User";
     buttonActionFilterOne: () => void;
     buttonActionFilterTwo: () => void;
     buttonActionFilterThree: () => void;

@@ -1,0 +1,38 @@
+/*Definição do escopo inicial*/
+.apresentationContainer{
+    width: 100%;
+    height: 100%;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+    margin-top: 17rem;
+}
+
+/*Lista de vacinas*/
+.apresentationContainer{
+    padding: 0 3rem;
+}
+
+.filter-container{
+    align-self: flex-start;
+    gap: 0.5rem;
+}
+
+.filterVaccines{
+    color: var(--green-dark);
+}
+
+.filterSelect{
+    border: 2px solid var(--green-aqua-color);
+    background-color: transparent;
+    padding: 0.5rem;
+    border-radius: 0.5rem;
+    font-size: var(--small-font-size);
+    color: var(--green-aqua-color);
+    cursor: pointer;
+    outline: none;
+}
+
+
+/*Calendário*/
