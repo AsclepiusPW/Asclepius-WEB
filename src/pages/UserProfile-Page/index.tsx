@@ -1,5 +1,6 @@
 //Importações
 import React, { useEffect, useState } from "react";
+import { useNavigate } from "react-router-dom";
 
 //Estilização
 import "./style.css";
@@ -29,22 +30,39 @@ import { useUser } from "../../Contexts/UserContext";
 import { LoadingDatasComponent } from "../../components/LoadingDatas-Component";
 import { NotFoundDatas } from "../../components/NotFoundDatas-Component";
 import { OptionsDoctorsSlider } from "../../Sliders/OptionsDoctors-slider";
+import { VaccinationDTO } from "../../types/vaccinationTypes";
 
 //Class
 export const UserProfilePage: React.FC = () => {
     //Defindo funções do contexto
     const { user, profileImage } = useUser();
 
+    //Navegação
+    const navigate = useNavigate();
+
     //States
     const [userDetails, setUserDetails] = useState<UserDTO | null>();
+    const [visibleRegister, setVisibleRegisters] = useState<VaccinationDTO[] | null>();
     const [isLoading, setIsLoading] = useState<boolean>(false);
 
     //Effect
     useEffect(() => {
         setIsLoading(true);
         setUserDetails(user);
+        setVisibleRegisters(user?.vaccination);
         setIsLoading(false);
     }, [user]);
+
+    //Funções
+    const handleRegisterVaccination = (query: string) => {
+        if (query === "") {
+            setVisibleRegisters(user?.vaccination);
+            scrollToVaccinantionRegisters();
+        } else {
+            setVisibleRegisters(user?.vaccination?.filter(register => register.vaccine.name.toLowerCase().includes(query.toLowerCase())));
+            scrollToVaccinantionRegisters();
+        }
+    };
 
     return (
         <div className="container flex apresentation UserScreen" id="userProfile">
@@ -107,7 +125,7 @@ export const UserProfilePage: React.FC = () => {
                             buttonActionFilterOne={scrollToInformationUser}
                             buttonActionFilterThree={scrollToVaccinationRequets}
                             buttonActionFilterTwo={scrollToVaccinantionRegisters}
-                            functionFilter={() => { alert("Filter") }}
+                            functionFilter={handleRegisterVaccination}
                         />
                     </div>
 
@@ -116,14 +134,14 @@ export const UserProfilePage: React.FC = () => {
                     <div className="sectionUser-vaccinationRegisters flex" id="sectionUser-vaccinationRegisters">
                         <div className="vacciantionRegister-header flex">
                             <h3 className="registerHeader-Title">Registro de Vacinação</h3>
-                            <button className="registerHeader-button flex">
+                            <button className="registerHeader-button flex" onClick={() => navigate("/registerVaccination")}>
                                 <MdChecklist />  Ver mais
                             </button>
 
                         </div>
-                        {userDetails && userDetails.vaccination.length > 0 ? (
+                        {visibleRegister && visibleRegister.length > 0 ? (
                             <div className="vaccinationRegisters grid">
-                                {userDetails?.vaccination.slice(0, 4).map((vaccination, index) => (
+                                {visibleRegister.slice(0, 4).map((vaccination, index) => (
                                     <RegisterVaccination
                                         vaccination={vaccination}
                                         key={index}
@@ -138,7 +156,7 @@ export const UserProfilePage: React.FC = () => {
                     <div className="sectionUser-vaccinationRequests flex" id="sectionUser-vaccinationRequests">
                         <div className="vacciantionRequestes-header flex">
                             <h3 className="requestsHeader-Title">Solicitação de Vacinação</h3>
-                            <button className="requestsHeader-button flex">
+                            <button className="requestsHeader-button flex" onClick={() => navigate("/requestVaccination")}>
                                 <MdChecklist />  Ver mais
                             </button>
 
