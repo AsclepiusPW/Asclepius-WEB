@@ -124,7 +124,7 @@ export const Header: React.FC<Props> = ({ userVisibility, actionPage, functionSe
                     <li className="headerPagesList-item">
                         <p className={actionPage === "Event" ? "active-item listItemIcon" : "listItemIcon"}><MdEvent /></p>
                         <a
-                            href=""
+                            href="/event"
                             className={actionPage === "Event" ? "active-item" : "listItemLink"}
                         >Eventos</a>
                     </li>
