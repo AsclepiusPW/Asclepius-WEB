@@ -1,0 +1,80 @@
+.vaccine-component{
+    width: 100%;
+    height: auto;
+    padding: 1.5rem 0;
+    border-radius: 1rem;
+    flex-direction: column;
+    gap: 1rem;
+    background: linear-gradient(90deg, #c8eddb, #FFFFFF);
+}
+
+.vaccine-title{
+    width: 100%;
+    text-align: center;
+    color: var(--green-dark);
+}
+
+.vaccine-container{
+    width: 100%;
+    justify-content: center;
+    gap: 3rem;
+}
+
+.vaccine-icon{
+    width: 5rem;
+}
+
+.vaccine-content{
+    flex-direction: column;
+    width: 40%;
+    align-items: flex-start;
+    justify-content: flex-start;
+    gap: 0.3rem;
+}
+
+.vaccine-details,
+.vaccine-description{
+    font-weight: bold;
+    color: var(--green-dark);
+}
+
+.vaccine-details,
+.vaccine-title{
+    width: 85%;
+    display: -webkit-box;
+    -webkit-line-clamp: 1;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+}
+
+.vaccine-description{
+    width: 85%;
+}
+
+.vaccine-description span{
+    margin-top: 0.3rem;
+    font-size: var(--small-font-size);
+    display: -webkit-box;
+    -webkit-line-clamp: 3;
+    -webkit-box-orient: vertical;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    word-break: break-word;
+}
+
+.vaccine-title span,
+.vaccine-details span,
+.vaccine-description span{
+    margin-left: 0.3rem;
+    font-weight: initial;
+    font-style: italic;
+    text-align: justify;
+    color: var(--title-color);
+}
+
+.vaccine-buttons{
+    width: 90%;
+    justify-content: space-around;
+}
