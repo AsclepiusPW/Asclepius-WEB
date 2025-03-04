@@ -10,6 +10,7 @@ import { UserProvider } from "./Contexts/UserContext";
 register();
 import 'swiper/swiper-bundle.css';
 import { VaccineProvider } from "./Contexts/VaccineContext";
+import { EventProvider } from "./Contexts/EventContext";
 
 function App() {
   return (
@@ -17,10 +18,12 @@ function App() {
       <AuthProvider>
         <UserProvider>
           <VaccineProvider>
-            <Outlet/>
-            <ToastContainer theme="dark"/>
+            <EventProvider>
+              <Outlet />
+              <ToastContainer theme="dark" />
+            </EventProvider>
           </VaccineProvider>
-          </UserProvider>
+        </UserProvider>
       </AuthProvider>
     </>
   )

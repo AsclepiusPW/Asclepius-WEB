@@ -17,6 +17,7 @@ import { EventsPages } from './pages/Events-Page/index.tsx'
 import { RegisterVaccinationPage } from './pages/RegisterVaccination-Page/index.tsx'
 import { VaccineDetailsPage } from './pages/VaccineDetails-Page/index.tsx'
 import { ErrorPage } from './pages/Error-Page/index.tsx'
+import { EventDetailsPage } from './pages/EventDetails-Page/index.tsx'
 
 // ***Criando rotas
 const router = createBrowserRouter([
@@ -62,6 +63,10 @@ const router = createBrowserRouter([
       {
         path: "/event",
         element: <EventsPages/>
+      },
+      {
+        path: "/event/:id",
+        element: <EventDetailsPage/> 
       },
       {
         path: "*",
