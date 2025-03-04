@@ -33,11 +33,12 @@ interface Props {
     titleMenu?: string; //Fornece o título
     placheholderInput?: string; //Fornece um placeholder
     functionSearch?: (query: string) => void; // Fornece a função
+    includeInputForSearch?: boolean;
     onStateInSearch?: React.Dispatch<React.SetStateAction<VaccineDTO[] | EventVaccinationCalendarDTO[] | []>>;
 }
 
 //Class
-export const Header: React.FC<Props> = ({ userVisibility, actionPage, functionSearch, searchVisibility, titleMenu, placheholderInput, onStateInSearch }) => {
+export const Header: React.FC<Props> = ({ userVisibility, actionPage, functionSearch, searchVisibility, titleMenu, placheholderInput, onStateInSearch, includeInputForSearch }) => {
     //Defindo funções do contexto
     const { logout } = useAuth();
     const { user } = useUser();
@@ -169,20 +170,22 @@ export const Header: React.FC<Props> = ({ userVisibility, actionPage, functionSe
                         <div className="headerPages-search flex">
                             <h2 className="headerSearch-title">{titleMenu ? titleMenu : "Título da página"}</h2>
 
-                            <form className="headerSearch-form flex" onSubmit={handleSubmitForm}>
-                                <input
-                                    type="text"
-                                    placeholder={placheholderInput ? placheholderInput : "Pesquisar..."}
-                                    className="headerSearchForm-input"
-                                    onChange={handleOnChangeInput}
-                                />
+                            {includeInputForSearch && (
+                                <form className="headerSearch-form flex" onSubmit={handleSubmitForm}>
+                                    <input
+                                        type="text"
+                                        placeholder={placheholderInput ? placheholderInput : "Pesquisar..."}
+                                        className="headerSearchForm-input"
+                                        onChange={handleOnChangeInput}
+                                    />
 
-                                <button
-                                    type="submit"
-                                    className="headerSearchForm-button">
-                                    <IoSearchOutline/>
-                                </button>
-                            </form>
+                                    <button
+                                        type="submit"
+                                        className="headerSearchForm-button">
+                                        <IoSearchOutline/>
+                                    </button>
+                                </form>
+                            )}
                         </div>
                     )}
 
