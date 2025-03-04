@@ -81,7 +81,7 @@ export const Header: React.FC<Props> = ({ userVisibility, actionPage, functionSe
     // Função para monitorar o scroll
     useEffect(() => {
         const handleScroll = () => {
-            if (window.scrollY > 50 && search?.trim() === "") {
+            if (window.scrollY > 50) {
                 setIsVisible(false);
             } else {
                 setIsVisible(true);
@@ -93,7 +93,7 @@ export const Header: React.FC<Props> = ({ userVisibility, actionPage, functionSe
         return () => {
             window.removeEventListener("scroll", handleScroll);
         };
-    }, [search]);
+    }, []);
 
     return (
         <header className={maximinized ? "headerPages flex borderRadiusHeader" : "headerPages flex"}>
