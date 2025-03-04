@@ -6,7 +6,6 @@ export const scrollToInformationUser = () => {
     }
 };
 
-
 export const scrollToVaccinantionRegisters = () => {
     const formElement = document.getElementById('sectionUser-vaccinationRegisters');
     if (formElement) {
@@ -16,6 +15,13 @@ export const scrollToVaccinantionRegisters = () => {
 
 export const scrollToVaccinationRequets = () => {
     const formElement = document.getElementById('sectionUser-vaccinationRequests');
+    if (formElement) {
+        formElement.scrollIntoView({ behavior: 'smooth' });
+    }
+};
+
+export const scrollToEvents = () => {
+    const formElement = document.getElementById('listEvents');
     if (formElement) {
         formElement.scrollIntoView({ behavior: 'smooth' });
     }
