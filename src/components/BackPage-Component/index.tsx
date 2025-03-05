@@ -10,13 +10,14 @@ import { FiArrowLeft } from "react-icons/fi";
 //Props
 interface Props {
     title?: string,
+    pagesStyem?: boolean
 }
 
-export const BackPage: React.FC<Props> = ({title}) => {
+export const BackPage: React.FC<Props> = ({title, pagesStyem}) => {
     const navigate = useNavigate();
 
     return(
-        <div className="backPage" onClick={() => navigate(-1)}>
+        <div className={pagesStyem ? "backPage-component" : "backPage"} onClick={() => navigate(-1)}>
             <div className="backPage-Icon">
                 <FiArrowLeft/>
             </div>
