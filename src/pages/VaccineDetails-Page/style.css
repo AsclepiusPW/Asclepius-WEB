@@ -29,7 +29,10 @@
 
 .vaccineDetails-name,
 .vaccineDetails-manufacturer,
-.vaccineDetails-type {
+.vaccineDetails-type,
+.vaccineDetails-description h2,
+.vaccineDetails-contraIndication h2,
+.vaccineListEvents h1 {
   color: var(--green-dark);
   display: -webkit-box;
   -webkit-line-clamp: 1;
@@ -73,6 +76,12 @@
   grid-template-columns: repeat(2, 1fr);
 }
 
+/*=============== BREAKPOINTS ===============*/
+/* For large devices */
+@media screen and (max-width: 992px) {
+}
+
+/* For medium devices */
 @media screen and (max-width: 768px) {
   .vaccineDetails-apresentation {
     margin-top: 8rem;
@@ -97,5 +106,6 @@
 @media screen and (max-width: 576px) {
 }
 
+/* For small devices */
 @media screen and (max-width: 370px) {
 }
