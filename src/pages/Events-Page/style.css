@@ -1,22 +1,29 @@
 /*Defaults*/
-.apresentationContainer{
-    width: 100%;
-    height: 100%;
-    gap: 2rem;
+.apresentationContainer {
+  width: 100%;
+  height: 100%;
+  gap: 2rem;
 }
 
 /*Lista de eventos*/
-.gridListAllEvents{
-    margin-top: 5rem;
-    width: 100% !important;
-    height: auto !important;
+.gridListAllEvents {
+  margin-top: 5rem;
+  width: 100% !important;
+  height: auto !important;
 }
 
-.listAllEventsTitle{
-    width: 100%;
-    justify-content: space-between;
+.listAllEventsTitle {
+  width: 100%;
+  justify-content: space-between;
 }
 
-.titleEvents, .numericEvents{
-    color: var(--green-dark);
+.titleEvents,
+.numericEvents {
+  color: var(--green-dark);
+}
+
+.listEvents {
+  width: 80%;
+  height: auto;
+  grid-template-columns: repeat(2, 1fr);
 }
