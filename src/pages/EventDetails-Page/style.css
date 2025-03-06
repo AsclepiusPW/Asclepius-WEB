@@ -59,3 +59,12 @@
   font-weight: normal;
   color: var(--text-color);
 }
+
+.eventDetails-observation {
+  align-items: flex-start;
+  padding: 1rem 3rem;
+}
+
+.eventDetails-observation p {
+  text-align: justify;
+}
