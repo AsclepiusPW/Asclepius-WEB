@@ -72,3 +72,24 @@
   width: 100%;
   grid-template-columns: repeat(2, 1fr);
 }
+
+@media screen and (max-width: 768px) {
+  .vaccineDetails-apresentation {
+    margin-top: 8rem;
+    padding: 0 0.5rem;
+  }
+
+  .vaccineDetailsHeader {
+    width: 90%;
+  }
+
+  .vaccineDetails-image {
+    display: none;
+  }
+
+  .vaccineDetails-events,
+  .vaccineDetails-vaccine {
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+}
