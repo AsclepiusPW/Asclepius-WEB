@@ -59,6 +59,17 @@ export const VaccineDetailsPage = () => {
     })();
   }, [vaccine, allEvents]);
 
+  useEffect(() => {
+    (() => {
+      if (!vaccine || !allVaccines) return;
+
+      const vaccinesManufacturer = allVaccines.filter(
+        (v) => v.type.toLowerCase() === vaccine.type.toLowerCase()
+      );
+      setVaccines(vaccinesManufacturer);
+    })();
+  }, [vaccine, allVaccines]);
+
   return (
     <div
       className="container flex apresentation vaccineDetailsScreen"
