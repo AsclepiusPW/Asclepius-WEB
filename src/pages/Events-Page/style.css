@@ -8,6 +8,8 @@
 /*Lista de eventos*/
 .gridListAllEvents {
   margin-top: 5rem;
+  flex-direction: column;
+  gap: 2rem;
   width: 100% !important;
   height: auto !important;
 }
@@ -28,6 +30,12 @@
   grid-template-columns: repeat(2, 1fr);
 }
 
+/*=============== BREAKPOINTS ===============*/
+/* For large devices */
+@media screen and (max-width: 992px) {
+}
+
+/* For medium devices */
 @media screen and (max-width: 768px) {
   .apresentationContainer {
     margin-top: 8rem;
@@ -43,5 +51,6 @@
 @media screen and (max-width: 576px) {
 }
 
+/* For small devices */
 @media screen and (max-width: 370px) {
 }
