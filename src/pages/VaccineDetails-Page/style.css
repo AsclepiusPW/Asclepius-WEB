@@ -19,3 +19,29 @@
 .vaccineDetails-image {
   width: 6rem;
 }
+
+.vaccineDetails-info {
+  flex-direction: column;
+  height: auto;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.vaccineDetails-name,
+.vaccineDetails-manufacturer,
+.vaccineDetails-type {
+  color: var(--green-dark);
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+}
+
+.vaccineDetails-name span,
+.vaccineDetails-manufacturer span,
+.vaccineDetails-type span {
+  margin-left: 0.3rem;
+  color: var(--text-color);
+}
