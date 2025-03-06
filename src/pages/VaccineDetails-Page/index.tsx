@@ -43,6 +43,22 @@ export const VaccineDetailsPage = () => {
     })();
   }, [id, allVaccines]);
 
+  useEffect(() => {
+    (() => {
+      if (!vaccine || !allEvents) return;
+
+      toast.loading("Buscando eventos com essa vacina...");
+      setLoadingEvent(true);
+      const events = allEvents.filter((event) => event.idVaccine === id);
+      toast.dismiss();
+      if (!events)
+        return toast.info("Não há eventos disponíveis para essa vacina.");
+      setEvent(events);
+      toast.success("Eventos encontrados");
+      setLoadingEvent(false);
+    })();
+  }, [vaccine, allEvents]);
+
   return (
     <div
       className="container flex apresentation vaccineDetailsScreen"
