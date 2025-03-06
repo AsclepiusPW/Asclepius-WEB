@@ -125,3 +125,26 @@
   width: 90%;
   grid-template-columns: repeat(2, 1fr);
 }
+
+@media screen and (max-width: 768px) {
+  .eventDetails-apresentation {
+    margin-top: 8rem;
+    padding: 0 0.5rem;
+  }
+
+  .eventDetailsHeader,
+  .eventDetails-observation,
+  .eventDetails-vaccine {
+    width: 90%;
+  }
+
+  .eventDetails-events h2 {
+    padding-left: 0;
+    align-self: center;
+  }
+
+  .eventRelationsList {
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+}
