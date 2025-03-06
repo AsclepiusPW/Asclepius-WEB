@@ -30,3 +30,32 @@
   width: 90%;
   justify-content: space-between;
 }
+
+.eventDetails-list {
+  width: 90%;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.eventDetails-local,
+.listInfo-item {
+  color: var(--green-dark);
+  font-weight: bold;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+}
+
+.eventDetails-local span,
+.listInfo-item span {
+  margin-left: 0.3rem;
+}
+
+.listInfo-item span {
+  font-weight: normal;
+  color: var(--text-color);
+}
