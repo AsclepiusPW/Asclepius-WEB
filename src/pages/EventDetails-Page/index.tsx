@@ -53,6 +53,7 @@ export const EventDetailsPage = () => {
       setLoading(false);
     })();
   }, [id, allEvents]);
+
   return (
     <div
       className="container flex apresentation eventDetailsScreen"
@@ -65,7 +66,43 @@ export const EventDetailsPage = () => {
       />
       <div className="eventDetails-apresentation flex">
         <BackPage title="Voltar" pagesStyem={true} />
-        {loading ? <LoadingDatasComponent /> : <NotFoundDatas />}
+        {loading ? (
+          <LoadingDatasComponent />
+        ) : event ? (
+          <>
+            <div className="eventDetailsHeader-map">
+              {isValidLocation ? (
+                <MapContainer
+                  center={[Number(event.latitude), Number(event.longitude)]}
+                  zoom={15}
+                  style={{ width: "100%", height: "100%", borderRadius: "8px" }}
+                  dragging={false}
+                  touchZoom={false}
+                  scrollWheelZoom={false}
+                  doubleClickZoom={false}
+                  boxZoom={false}
+                  keyboard={false}
+                >
+                  <TileLayer url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png" />
+                  <Marker
+                    position={[Number(event.latitude), Number(event.longitude)]}
+                    icon={customIcon}
+                  >
+                    <Popup>
+                      <b>{event.local}</b>
+                      <br />
+                      Data: {formatDate(event.date)}
+                    </Popup>
+                  </Marker>
+                </MapContainer>
+              ) : (
+                <p>Localização não disponível</p>
+              )}
+            </div>
+          </>
+        ) : (
+          <NotFoundDatas />
+        )}
       </div>
       <div className="sectionSlidersPages flex">
         <OptionsDoctorsSlider />
