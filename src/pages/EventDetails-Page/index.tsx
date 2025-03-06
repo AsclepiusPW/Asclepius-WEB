@@ -185,6 +185,21 @@ export const EventDetailsPage = () => {
                 </p>
               </div>
             </div>
+
+            <div className="eventDetails-events flex">
+              <h2>Eventos relacionados</h2>
+              <div className="eventRelationsList grid">
+                {loading ? (
+                  <LoadingDatasComponent />
+                ) : (
+                  allEvents
+                    .slice(0, 2)
+                    .map((event, index) => (
+                      <EventComponent key={index} event={event} />
+                    ))
+                )}
+              </div>
+            </div>
           </>
         ) : (
           <NotFoundDatas />
