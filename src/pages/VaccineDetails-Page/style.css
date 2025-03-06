@@ -7,3 +7,15 @@
   gap: 4rem;
   margin-top: 15rem;
 }
+
+.vaccineDetailsHeader {
+  margin-top: 2rem;
+  width: 80%;
+  height: auto;
+  gap: 2rem;
+  padding: 0 2rem;
+}
+
+.vaccineDetails-image {
+  width: 6rem;
+}
