@@ -1,5 +1,4 @@
 //Importações
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { formatDate } from "../../Utils/formatDate";
 
@@ -64,7 +63,7 @@ export const RegisterVaccination = ({ vaccination }: Props) => {
                     </span>
             </p>
  
-            <button className="button-totality">Ver Vacina</button>
+            <button className="button-totality" onClick={() => navigate(`/vaccine/${vaccination?.vaccine.id}`)}>Ver Vacina</button>
         </div>
     )
 }

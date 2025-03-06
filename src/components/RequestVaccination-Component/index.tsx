@@ -43,7 +43,7 @@ export function RequestVaccinationComponent({ calendar }: Props) {
             className="request-vaccination-container flex" >
             <div className="request-vaccination-header flex">
                 <h3 className="request-vaccination-title">{calendar ? calendar.calendar.local : "Hospital Corréia Saraiva"}</h3>
-                <button className="request-vaccination-seeMore flex"><MdChecklist /> Ver Mais</button>
+                <button className="request-vaccination-seeMore flex" onClick={() => navigate(`/event/${calendar ? calendar.calendar.id : ""}`)}><MdChecklist /> Ver Mais</button>
             </div>
 
             <div className="request-vaccination-details flex">

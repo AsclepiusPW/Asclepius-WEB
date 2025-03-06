@@ -35,10 +35,11 @@ interface Props {
     functionSearch?: (query: string) => void; // Fornece a função
     includeInputForSearch?: boolean;
     onStateInSearch?: React.Dispatch<React.SetStateAction<VaccineDTO[] | EventVaccinationCalendarDTO[] | []>>;
+    setAlterFather?: React.Dispatch<React.SetStateAction<boolean>>;
 }
 
 //Class
-export const Header: React.FC<Props> = ({ userVisibility, actionPage, functionSearch, searchVisibility, titleMenu, placheholderInput, onStateInSearch, includeInputForSearch }) => {
+export const Header: React.FC<Props> = ({ userVisibility, actionPage, functionSearch, searchVisibility, titleMenu, placheholderInput, onStateInSearch, includeInputForSearch, setAlterFather }) => {
     //Defindo funções do contexto
     const { logout } = useAuth();
     const { user } = useUser();
@@ -78,6 +79,16 @@ export const Header: React.FC<Props> = ({ userVisibility, actionPage, functionSe
         }
     };
 
+    //Função para aumentar e diminuir menu
+    const handleMaximinizedMenu = () => {
+        setMaximinized((prev) => {
+            const newState = !prev; // Inverte o estado
+            if (setAlterFather) {
+                setAlterFather(newState); // Atualiza o estado do pai imediatamente
+            }
+            return newState; // Retorna o novo estado
+        });
+    };    
 
     // Função para monitorar o scroll
     useEffect(() => {
@@ -216,7 +227,7 @@ export const Header: React.FC<Props> = ({ userVisibility, actionPage, functionSe
                     )}
 
                     {isVisible && !userVisibility && !searchVisibility && (
-                        <button className="headerPages-manipulation" onClick={() => setMaximinized(!maximinized)}>
+                        <button className="headerPages-manipulation" onClick={handleMaximinizedMenu}>
                             {!maximinized ? <IoIosArrowDown/> : <IoIosArrowUp/>}
                         </button>
                     )}
