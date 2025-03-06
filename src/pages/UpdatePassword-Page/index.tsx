@@ -14,7 +14,8 @@ import logo from "../../assets/logo.png";
 import { BackPage } from "../../components/BackPage-Component";
 
 //ícones
-import { LuEye, LuEyeClosed } from "react-icons/lu";
+import { LuEye } from "react-icons/lu";
+import { FaEyeSlash } from "react-icons/fa";
 
 //Types
 type FormDataUpdatePassword = {
@@ -103,7 +104,7 @@ export const UpdatePasswordPage = () => {
                             {...register("password")}
                         />
                         <p className="seePassword" onClick={() => setVisiblePassword(!visiblePassword)}>
-                            {visiblePassword ? <LuEyeClosed /> : <LuEye />}
+                            {visiblePassword ? <FaEyeSlash /> : <LuEye />}
                         </p>
                     </div>
                     <span className="form-error">{errors.password?.message}</span>
@@ -118,7 +119,7 @@ export const UpdatePasswordPage = () => {
                             {...register("confirmPassword")}
                         />
                         <p className="seePassword" onClick={() => setVisibleConfirmPassword(!visibleConfirmPassword)}>
-                            {visibleConfirmPassword ? <LuEyeClosed /> : <LuEye />}
+                            {visibleConfirmPassword ? <FaEyeSlash/> : <LuEye />}
                         </p>
                     </div>
                     <span className="form-error">{errors.confirmPassword?.message}</span>
