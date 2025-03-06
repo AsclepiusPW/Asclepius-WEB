@@ -20,7 +20,8 @@ type formCreateUser = {
 import { createUserschema } from "../../validations/createUserValidations";
 
 //Ícones
-import { LuEye, LuEyeClosed } from "react-icons/lu";
+import { LuEye } from "react-icons/lu";
+import { FaEyeSlash } from "react-icons/fa";
 
 //Contexto
 import { useUser } from "../../Contexts/UserContext";
@@ -151,7 +152,7 @@ export const CreateUserSection = () => {
                             {...register("password")}
                         />
                         <p className="seePassword" onClick={() => setVisiblePassword(!visiblePassword)}>
-                            {visiblePassword ? <LuEyeClosed /> : <LuEye />}
+                            {visiblePassword ? <FaEyeSlash /> : <LuEye />}
                         </p>
                     </div>
                     <span className="form-error">{errors.password?.message}</span>
@@ -166,7 +167,7 @@ export const CreateUserSection = () => {
                             {...register("confirmPassword")}
                         />
                         <p className="seePassword" onClick={() => setVisibleConfirmPassword(!visibleConfirmPassword)}>
-                            {visibleConfirmPassword ? <LuEyeClosed /> : <LuEye />}
+                            {visibleConfirmPassword ? <FaEyeSlash /> : <LuEye />}
                         </p>
                     </div>
                     <span className="form-error">{errors.confirmPassword?.message}</span>

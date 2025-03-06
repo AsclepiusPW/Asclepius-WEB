@@ -10,7 +10,8 @@ import "./style.css";
 import asideLogin from "../../assets/About-LeadingPage.png";
 
 //Ícones
-import { LuEye, LuEyeClosed } from "react-icons/lu";
+import { LuEye } from "react-icons/lu";
+import { FaEyeSlash } from "react-icons/fa";
 
 //Types
 import { AuthenticateUserDTO } from "../../types/userTypes";
@@ -87,7 +88,7 @@ export const LoginSection = () => {
                             {...register("password")}
                         />
                         <p className="seePassword" onClick={() => setVisiblePassword(!visiblePassword)}>
-                            {visiblePassword ? <LuEyeClosed /> : <LuEye />}
+                            {visiblePassword ? <FaEyeSlash /> : <LuEye />}
                         </p>
                     </div>
                     <span className="form-error">{errors.password?.message}</span>
