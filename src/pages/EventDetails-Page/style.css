@@ -68,3 +68,42 @@
 .eventDetails-observation p {
   text-align: justify;
 }
+
+.eventDetails-vaccine {
+  width: 80%;
+  flex-direction: column;
+  gap: 1.5rem;
+  background-color: var(--white-color);
+  border-radius: 1rem;
+  padding: 1rem 0;
+}
+
+.eventVaccine-title {
+  width: 90%;
+  justify-content: space-between;
+}
+
+.eventVaccineDescription-list {
+  width: 90%;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.eventVaccine-title h2,
+.descriptionListVaccine-item {
+  color: var(--green-dark);
+  font-weight: bold;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+}
+
+.descriptionListVaccine-item span {
+  margin-left: 0.3rem;
+  font-weight: normal;
+  color: var(--text-color);
+}
