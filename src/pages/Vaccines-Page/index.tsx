@@ -57,6 +57,10 @@ export const VaccinesPage = () => {
   }, [filter, allListVaccines]);
 
   useEffect(() => {
+    setVisibleVaccines(filteredVaccines);
+  }, [filteredVaccines]);
+
+  useEffect(() => {
     (() => {
       if (filter !== "") {
         switch (filter) {
