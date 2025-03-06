@@ -28,6 +28,21 @@ export const VaccineDetailsPage = () => {
   const [loadingEvent, setLoadingEvent] = useState<boolean>(false);
   const { id } = useParams<{ id: string }>();
 
+  useEffect(() => {
+    (() => {
+      if (!allVaccines || !id) return;
+
+      toast.loading("Buscando vacina...");
+      setLoadingVaccine(true);
+      const vaccine = allVaccines.find((vaccine) => vaccine.id === id);
+      toast.dismiss();
+      if (!vaccine) return toast.error("Vacina não encontrada");
+      setVaccine(vaccine);
+      toast.success("Vacina encontrada");
+      setLoadingVaccine(false);
+    })();
+  }, [id, allVaccines]);
+
   return (
     <div
       className="container flex apresentation vaccineDetailsScreen"
