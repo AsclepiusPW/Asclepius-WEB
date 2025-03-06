@@ -2,13 +2,25 @@
 import { useParams } from "react-router-dom";
 import { useEffect, useState } from "react";
 import { toast } from "react-toastify";
+
+//Types
 import { VaccineDTO } from "../../types/vaccineTypes";
 import { EventVaccinationCalendarDTO } from "../../types/eventVaccinationCalendar";
+
+//Styles
 import "./style.css";
+
+//Contextos
 import { useVaccine } from "../../Contexts/VaccineContext";
 import { useEvent } from "../../Contexts/EventContext";
+
+//Imagens
 import videoConferencia from "../../assets/Icons/videoconferencia.png";
+
+//Icones
 import { MdVaccines } from "react-icons/md";
+
+//Componentes
 import { Header } from "../../components/Header-Component";
 import { BackPage } from "../../components/BackPage-Component";
 import { LoadingDatasComponent } from "../../components/LoadingDatas-Component";
@@ -18,20 +30,28 @@ import { Footer } from "../../components/Footer-Component";
 import { EventComponent } from "../../components/Event-Component";
 import { VaccineComponent } from "../../components/Vaccine-Component";
 
+//Class
 export const VaccineDetailsPage = () => {
+  //Definindo o contexto
   const { allVaccines } = useVaccine();
   const { allEvents } = useEvent();
+
+  //State
   const [vaccine, setVaccine] = useState<VaccineDTO>();
   const [vaccines, setVaccines] = useState<VaccineDTO[]>();
   const [event, setEvent] = useState<EventVaccinationCalendarDTO[]>();
   const [loadignVaccine, setLoadingVaccine] = useState<boolean>(false);
   const [loadingEvent, setLoadingEvent] = useState<boolean>(false);
+
+  //Pegando o id da Url
   const { id } = useParams<{ id: string }>();
 
+  //UseEffect
   useEffect(() => {
     (() => {
       if (!allVaccines || !id) return;
 
+      //Encontrando a vacina
       toast.loading("Buscando vacina...");
       setLoadingVaccine(true);
       const vaccine = allVaccines.find((vaccine) => vaccine.id === id);
@@ -47,6 +67,7 @@ export const VaccineDetailsPage = () => {
     (() => {
       if (!vaccine || !allEvents) return;
 
+      //Encontrando os eventos
       toast.loading("Buscando eventos com essa vacina...");
       setLoadingEvent(true);
       const events = allEvents.filter((event) => event.idVaccine === id);
@@ -63,12 +84,13 @@ export const VaccineDetailsPage = () => {
     (() => {
       if (!vaccine || !allVaccines) return;
 
+      // Filtrando vacinas com o mesmo fabricante da `vaccine` atual
       const vaccinesManufacturer = allVaccines.filter(
         (v) => v.type.toLowerCase() === vaccine.type.toLowerCase()
       );
       setVaccines(vaccinesManufacturer);
     })();
-  }, [vaccine, allVaccines]);
+  }, [vaccine, allVaccines]); // Adicionado allVaccines como dependência
 
   return (
     <div
@@ -80,6 +102,7 @@ export const VaccineDetailsPage = () => {
         actionPage="Vaccine"
         titleMenu={vaccine?.name || "Detalhes da Vacina"}
       />
+
       <div className="vaccineDetails-apresentation flex">
         {loadignVaccine ? (
           <LoadingDatasComponent />
@@ -92,6 +115,7 @@ export const VaccineDetailsPage = () => {
                 alt="Apresentação"
                 className="vaccineDetails-image"
               />
+
               <div className="vaccineDetails-info flex">
                 <h2 className="vaccineDetails-name">
                   Nome:
@@ -160,9 +184,11 @@ export const VaccineDetailsPage = () => {
           <NotFoundDatas />
         )}
       </div>
+
       <div className="sectionSlidersPages flex">
         <OptionsDoctorsSlider />
       </div>
+
       <Footer systemPages={true} />
     </div>
   );
