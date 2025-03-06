@@ -138,6 +138,53 @@ export const EventDetailsPage = () => {
                 </span>
               </p>
             </div>
+            {event?.observation &&
+              !event.observation
+                .toLowerCase()
+                .includes("Observation not informed".toLowerCase()) && (
+                <div className="eventDetails-observation flex">
+                  <h2>
+                    <MdVaccines /> Observação:
+                  </h2>
+                  <p>{event.observation || "Sem descrição definida"}</p>
+                </div>
+              )}
+
+            <div className="eventDetails-vaccine flex">
+              <div className="eventVaccine-title flex">
+                <h2>
+                  Vacina:{" "}
+                  <span>{event?.vaccine.name || "Sem vacina definida"}</span>
+                </h2>
+                <button
+                  className="button-opacity"
+                  onClick={() => navigate(`/vaccine/${event?.vaccine.id}`)}
+                >
+                  Mais Informações
+                </button>
+              </div>
+              <div className="eventVaccineDescription-list flex">
+                <p className="descriptionListVaccine-item">
+                  <MdVaccines /> Fabricante:
+                  <span>
+                    {event?.vaccine.manufacturer || "Sem fabricante definido"}
+                  </span>
+                </p>
+                <p className="descriptionListVaccine-item">
+                  <MdVaccines /> Descrição:
+                  <span>
+                    {event?.vaccine.description || "Sem tipo definido"}
+                  </span>
+                </p>
+                <p className="descriptionListVaccine-item">
+                  <MdVaccines /> Contra Indicação:
+                  <span>
+                    {event?.vaccine.contraIndication ||
+                      "Sem contra indicação definida"}
+                  </span>
+                </p>
+              </div>
+            </div>
           </>
         ) : (
           <NotFoundDatas />
