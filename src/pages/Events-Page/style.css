@@ -27,3 +27,15 @@
   height: auto;
   grid-template-columns: repeat(2, 1fr);
 }
+
+@media screen and (max-width: 768px) {
+  .apresentationContainer {
+    margin-top: 8rem;
+    padding: 0 2rem;
+  }
+
+  .listEvents {
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+}
