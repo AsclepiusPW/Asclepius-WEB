@@ -1,6 +1,5 @@
 //Importações
 import { useState, useEffect, useMemo } from "react";
-import { toast } from "react-toastify";
 
 //Estilização
 import "./style.css";
@@ -8,7 +7,7 @@ import "./style.css";
 //Componentes
 import { Header } from "../../components/Header-Component";
 import { OptionsDoctorsSlider } from "../../Sliders/OptionsDoctors-slider";
-import { RegisterVaccination } from "../../components/RegisterVaccination-Component";
+import { VaccineComponent } from "../../components/Vaccine-Component";
 import { Footer } from "../../components/Footer-Component";
 
 //Types
@@ -16,6 +15,9 @@ import { VaccineDTO } from "../../types/vaccineTypes";
 
 //Contextos
 import { useVaccine } from "../../Contexts/VaccineContext";
+
+//Icons
+import { GrPrevious, GrNext } from "react-icons/gr";
 
 //Class
 export const VaccinesPage = () => {
@@ -25,6 +27,7 @@ export const VaccinesPage = () => {
   //State
   const [allListVaccines, setAllListVaccines] = useState<VaccineDTO[]>();
   const [visibleVaccines, setVisibleVaccines] = useState<VaccineDTO[]>();
+  const [currentPage, setCurrentPage] = useState(0);
   const [filter, setFilter] = useState<string>("");
 
   //Effect
@@ -60,42 +63,34 @@ export const VaccinesPage = () => {
     setVisibleVaccines(filteredVaccines);
   }, [filteredVaccines]);
 
+  //Controle de listagem de vacinas
   useEffect(() => {
-    (() => {
-      if (filter !== "") {
-        switch (filter) {
-          case "withEvents":
-            setVisibleVaccines(
-              allListVaccines?.filter(
-                (vaccine) => vaccine.vaccinationCalendar.length > 0
-              )
-            );
-            break;
-          case "recent":
-            setVisibleVaccines(
-              allListVaccines?.sort(
-                (a, b) =>
-                  new Date(b.createdAt).getTime() -
-                  new Date(a.createdAt).getTime()
-              )
-            );
-            break;
-          case "inEvents":
-            setVisibleVaccines(
-              allListVaccines?.filter(
-                (vaccine) => vaccine.vaccinationCalendar.length > 0
-              )
-            );
-            break;
-          default:
-            setVisibleVaccines(allListVaccines);
-            break;
-        }
-      }
-    })();
-  }, [filter]);
+    //Ordenando o array
+    const sortedVaccines = [...allVaccines].sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
+
+    const startIndex = currentPage * 6; // Índice inicial do bloco
+    const endIndex = startIndex + 6; // Índice final do bloco
+    const currentVaccines = sortedVaccines.slice(startIndex, endIndex);
+
+    setVisibleVaccines(currentVaccines);
+  }, [currentPage, allVaccines]);
 
   //Funções
+  const handleNext = () => {
+    if ((currentPage + 1) * 6 < allVaccines.length) {
+      setCurrentPage((prev) => prev + 1);
+    }
+  };
+
+  const handlePrev = () => {
+    if (currentPage > 0) {
+      setCurrentPage((prev) => prev - 1);
+    }
+  };
+
   const handleSearch = (query: string) => {
     if (query === "") {
       setVisibleVaccines(allListVaccines);
@@ -135,17 +130,39 @@ export const VaccinesPage = () => {
           </select>
         </div>
 
-        <div className="gridListVaccines flex">
-          <div className="listVaccines grid">
-            {visibleVaccines?.map((vaccine) => (
-              <div className="itemVaccine flex" key={vaccine.id}>
-                <p className="itemVaccine-name">{vaccine.name}</p>
-              </div>
-            ))}
-          </div>
-
-          <div className="calendarVaccines"></div>
+        <div className="listVaccines grid">
+          {visibleVaccines?.map((vaccine) => (
+            <VaccineComponent vaccine={vaccine} key={vaccine.id} />
+          ))}
         </div>
+
+        <div className="navigation-buttons flex">
+          <button
+            onClick={handlePrev}
+            className="prev-button flex"
+            disabled={currentPage === 0}
+          >
+            <GrPrevious />
+            Anterior
+          </button>
+
+          <p className="button-description">
+            {currentPage * 6 + 1} -{" "}
+            {Math.min((currentPage + 1) * 6, allVaccines.length)} de{" "}
+            {allVaccines.length}
+          </p>
+
+          <button
+            onClick={handleNext}
+            className="next-button flex"
+            disabled={(currentPage + 1) * 6 >= allVaccines.length}
+          >
+            Próximo
+            <GrNext />
+          </button>
+        </div>
+
+        <div className="gridListVaccines flex"></div>
 
         <OptionsDoctorsSlider />
         <Footer systemPages={true} />
