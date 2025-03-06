@@ -7,6 +7,7 @@ import "./style.css";
 
 //Componentes
 import { Header } from "../../components/Header-Component";
+import { EventComponent } from "../../components/Event-Component";
 import { OptionsDoctorsSlider } from "../../Sliders/OptionsDoctors-slider";
 import { Footer } from "../../components/Footer-Component";
 
@@ -14,74 +15,215 @@ import { Footer } from "../../components/Footer-Component";
 import { EventVaccinationCalendarDTO } from "../../types/eventVaccinationCalendar";
 import { FilterSearch } from "../../components/FilterSearch-Component";
 
+//Services
+import { findAllEvents } from "../../Services/EventServices";
+
+//Icons
+import { GrPrevious, GrNext } from "react-icons/gr";
+
+//Contextos
+import { useUser } from "../../Contexts/UserContext";
+import { useEvent } from "../../Contexts/EventContext";
+
+//Utils
+import { scrollToEvents } from "../../Utils/scrollFunctions";
+import { set } from "react-hook-form";
+
 //Class
 export const EventsPages = () => {
-    //Defininfo funções do contexto
-    const allEvents:EventVaccinationCalendarDTO[] = [];
+  //Definindo o contexto
+  const { user } = useUser();
+  const { allEvents } = useEvent();
 
-    //State
-    const [allListEvents, setAllListEvents] = useState<EventVaccinationCalendarDTO[]>();
-    const [visibleEvents, setVisibleEvents] = useState<EventVaccinationCalendarDTO[]>();
-    const [filter, setFilter] = useState<string>("");
+  //State
+  const [allListEvents, setAllListEvents] =
+    useState<EventVaccinationCalendarDTO[]>();
+  const [visibleEvents, setVisibleEvents] =
+    useState<EventVaccinationCalendarDTO[]>();
+  const [currentPage, setCurrentPage] = useState(0);
 
-    //Effect
-    useEffect(() => {
-        (() => {
-            setAllListEvents(allEvents);
-            setVisibleEvents(allEvents);
-        })();
-    }, [allEvents]);
+  //Effect
+  useEffect(() => {
+    (() => {
+      setAllListEvents(allEvents);
+      setVisibleEvents(allEvents);
+    })();
+  }, [allEvents]);
 
-    useEffect(() => {
-        (() => {
-            if (filter !== "") {
-                
-            }
-        })();
-    }, [filter]);
+  //Controle de listagem de vacinas
+  useEffect(() => {
+    if (!allListEvents) return;
 
-    //Funções
-    const handleSearch = (query: string) => {
-        if (query === "") {
-            setVisibleEvents(allListEvents);
-        } else {
-            setVisibleEvents(allListEvents?.filter(event => event.local.toLowerCase().includes(query.toLowerCase())));
-        }
-    };
+    //Ordenando o array
+    const sortedVaccines = [...allListEvents].sort(
+      (a, b) =>
+        new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    );
 
-    return (
-        <div className="container flex apresentation eventScreen" id="eventScreen">
-            <Header
-                searchVisibility={true}
-                actionPage="Event"
-                titleMenu="Eventos cadastrados"
-                functionSearch={handleSearch}
-            />
+    const startIndex = currentPage * 4; // Índice inicial do bloco
+    const endIndex = startIndex + 4; // Índice final do bloco
+    const currentVaccines = sortedVaccines.slice(startIndex, endIndex);
 
-            <div className="apresentationContainer flex">
+    setVisibleEvents(currentVaccines);
+  }, [currentPage, allListEvents]);
 
-                <FilterSearch
-                    filterEntity="Event"
-                    buttonActionFilterOne={() => {}}
-                    buttonActionFilterThree={() => {}}
-                    buttonActionFilterTwo={() => {}}
-                    functionFilter={() => {}}
-                />
+  //Funções
+  const handleNext = () => {
+    if (!allListEvents) return;
 
-                <div className="gridListAllEvents flex">
-                    <div className="listAllEventsTitle flex">
-                        <h3 className="titleEvents">Eventos que acontentceram na sua cidade</h3>
+    if ((currentPage + 1) * 4 < allListEvents.length) {
+      setCurrentPage((prev) => prev + 1);
+    }
+  };
 
-                        <p className="numericEvents">{allListEvents?.length || 0} eventos encontrados</p>
-                    </div>
+  const handlePrev = () => {
+    if (currentPage > 0) {
+      setCurrentPage((prev) => prev - 1);
+    }
+  };
 
-                    <div className="listEvents grid">
-                    </div>
-                </div>
+  const handleSearch = (query: string) => {
+    if (query === "") {
+      setVisibleEvents(allListEvents);
+    } else {
+      setVisibleEvents(
+        allListEvents?.filter((event) =>
+          event.local.toLowerCase().includes(query.toLowerCase())
+        )
+      );
+    }
+  };
 
-                <OptionsDoctorsSlider />
-                <Footer systemPages={true} />
+  const handleFilterForGeolocation = () => {
+    if (!user || !allListEvents) return;
+
+    const { latitude: userLat, longitude: userLng } = user;
+
+    const filteredEvents = allListEvents.filter((event) => {
+      if (!event.latitude || !event.longitude) return false;
+
+      const eventLat = event.latitude;
+      const eventLng = event.longitude;
+
+      const distance = Math.sqrt(
+        Math.pow(parseFloat(eventLat) - userLat, 2) +
+          Math.pow(parseFloat(eventLng) - userLng, 2)
+      );
+
+      return distance < 0.1; // Ajuste conforme necessário para a proximidade desejada
+    });
+
+    setVisibleEvents(filteredEvents);
+    scrollToEvents();
+  };
+
+  const handleFilterForThisMounth = () => {
+    if (!allListEvents) return;
+
+    const today = new Date();
+    const currentMonth = today.toISOString().slice(0, 7); // "YYYY-MM"
+
+    const filteredEvents = allListEvents.filter((event) =>
+      event.date.startsWith(currentMonth)
+    );
+
+    setVisibleEvents(filteredEvents);
+    scrollToEvents();
+  };
+
+  const handleFilterForNextMonth = () => {
+    if (!allListEvents) return;
+
+    const today = new Date();
+    const nextMonth = new Date(today.getFullYear(), today.getMonth() + 1, 1);
+    const nextMonthStr = nextMonth.toISOString().slice(0, 7); // "YYYY-MM"
+
+    const filteredEvents = allListEvents.filter((event) =>
+      event.date.startsWith(nextMonthStr)
+    );
+
+    setVisibleEvents(filteredEvents);
+    scrollToEvents();
+  };
+
+  const handleFilterForName = (query: string) => {
+    if (!allListEvents) return;
+
+    const filteredEvents = allListEvents.filter((event) =>
+      event.local.toLowerCase().includes(query.toLowerCase())
+    );
+
+    setVisibleEvents(filteredEvents);
+    scrollToEvents();
+  };
+
+  return (
+    <div className="container flex apresentation eventScreen" id="eventScreen">
+      <Header
+        searchVisibility={true}
+        actionPage="Event"
+        titleMenu="Eventos cadastrados"
+        functionSearch={handleSearch}
+      />
+
+      <div className="apresentationContainer flex">
+        <FilterSearch
+          filterEntity="Event"
+          buttonActionFilterOne={handleFilterForGeolocation}
+          buttonActionFilterTwo={handleFilterForThisMounth}
+          buttonActionFilterThree={handleFilterForNextMonth}
+          functionFilter={handleFilterForName}
+        />
+
+        <div className="gridListAllEvents flex">
+          <div className="listAllEventsTitle flex">
+            <h3 className="titleEvents">
+              Eventos que aconteceram na sua cidade
+            </h3>
+
+            <p className="numericEvents">
+              {allListEvents?.length || 0} eventos encontrados
+            </p>
+          </div>
+
+          <div className="listEvents grid" id="listEvents">
+            {visibleEvents?.map((event, index) => (
+              <EventComponent key={index} event={event} />
+            ))}
+          </div>
+
+          {allListEvents && allListEvents.length > 0 && (
+            <div className="navigation-buttons flex">
+              <button
+                onClick={handlePrev}
+                className="prev-button flex"
+                disabled={currentPage === 0}
+              >
+                <GrPrevious />
+                Anterior
+              </button>
+
+              <p className="button-description">
+                {currentPage * 4 + 1} -{" "}
+                {Math.min((currentPage + 1) * 4, allListEvents.length)} de{" "}
+                {allListEvents.length}
+              </p>
+
+              <button
+                onClick={handleNext}
+                className="next-button flex"
+                disabled={(currentPage + 1) * 4 >= allListEvents.length}
+              >
+                Próximo
+                <GrNext />
+              </button>
             </div>
+          )}
         </div>
-    )
-}
+
+        <OptionsDoctorsSlider />
+        <Footer systemPages={true} />
+      </div>
+    </div>
+  );
+};
