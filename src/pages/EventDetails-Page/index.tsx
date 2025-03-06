@@ -39,6 +39,20 @@ export const EventDetailsPage = () => {
     !isNaN(Number(event?.latitude)) &&
     !isNaN(Number(event?.longitude));
 
+  useEffect(() => {
+    (() => {
+      if (!allEvents || !id) return;
+
+      setLoading(true);
+      toast.loading("Buscando evento...");
+      const event = allEvents.find((event) => event.id === id);
+      toast.dismiss();
+      if (!event) return toast.error("Evento não encontrado");
+      setEvent(event);
+      toast.success("Evento encontrado");
+      setLoading(false);
+    })();
+  }, [id, allEvents]);
   return (
     <div
       className="container flex apresentation eventDetailsScreen"
