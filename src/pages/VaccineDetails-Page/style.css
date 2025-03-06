@@ -1,0 +1,9 @@
+.vaccineDetails-apresentation {
+  position: relative;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  padding: 2rem 0;
+  gap: 4rem;
+  margin-top: 15rem;
+}
