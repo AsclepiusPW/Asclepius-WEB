@@ -81,7 +81,84 @@ export const VaccineDetailsPage = () => {
         titleMenu={vaccine?.name || "Detalhes da Vacina"}
       />
       <div className="vaccineDetails-apresentation flex">
-        {loadignVaccine ? <LoadingDatasComponent /> : <NotFoundDatas />}
+        {loadignVaccine ? (
+          <LoadingDatasComponent />
+        ) : vaccine ? (
+          <>
+            <BackPage pagesStyem={true} />
+            <div className="vaccineDetailsHeader flex">
+              <img
+                src={videoConferencia}
+                alt="Apresentação"
+                className="vaccineDetails-image"
+              />
+              <div className="vaccineDetails-info flex">
+                <h2 className="vaccineDetails-name">
+                  Nome:
+                  <span>{vaccine?.name || "Nome não encontrado"}</span>
+                </h2>
+                <h3 className="vaccineDetails-manufacturer">
+                  Fabricante:
+                  <span>
+                    {vaccine?.manufacturer || "Fabrincante nã informado"}
+                  </span>
+                </h3>
+                <h4 className="vaccineDetails-type">
+                  Tipo:
+                  <span>{vaccine?.type || "Tipo não informado"}</span>
+                </h4>
+              </div>
+            </div>
+
+            <div className="vaccineDetails-description flex">
+              <h2>
+                <MdVaccines /> Descrição:
+              </h2>
+              <p>{vaccine?.description || "Descrição não encontrada"}</p>
+            </div>
+
+            <div className="vaccineDetails-contraIndication flex">
+              <h2>
+                <MdVaccines /> Contra indicação:
+              </h2>
+              <p>
+                {vaccine?.contraIndication || "Contra Indicação não encontrada"}
+              </p>
+            </div>
+
+            <div className="vaccineListEvents flex">
+              {loadingEvent ? (
+                <LoadingDatasComponent />
+              ) : event ? (
+                <>
+                  <h1>Eventos de vacinação</h1>
+                  <div className="vaccineDetails-events grid">
+                    {event &&
+                      event?.map((event, index) => (
+                        <EventComponent key={index} event={event} />
+                      ))}
+                  </div>
+                </>
+              ) : (
+                <NotFoundDatas />
+              )}
+            </div>
+
+            <div className="vaccineListEvents flex">
+              <h1>Vacinas do mesmo tipo</h1>
+              <div className="vaccineDetails-vaccine grid">
+                {vaccines &&
+                  vaccines
+                    ?.slice(0, 4)
+                    .map((vaccine, index) => (
+                      <VaccineComponent key={index} vaccine={vaccine} />
+                    ))}
+              </div>
+            </div>
+          </>
+        ) : (
+          <NotFoundDatas />
+        )}
       </div>
       <div className="sectionSlidersPages flex">
         <OptionsDoctorsSlider />
