@@ -99,6 +99,45 @@ export const EventDetailsPage = () => {
                 <p>Localização não disponível</p>
               )}
             </div>
+
+            <div className="eventDetails-info flex">
+              <h2 className="eventDetails-local">
+                Local:
+                <span>{event?.local || "Sem local definido"}</span>
+              </h2>
+              <button
+                className="button-totality"
+                onClick={() => handleRequestEvent(event?.id || "")}
+              >
+                Agendar Vaga
+              </button>
+            </div>
+
+            <div className="eventDetails-list flex">
+              <p className="listInfo-item">
+                <MdVaccines /> Status:
+                <span>
+                  {formatStatusEvent(event?.status) || "Sem status definido"}
+                </span>
+              </p>
+              <p className="listInfo-item">
+                <MdVaccines /> Data:
+                <span>
+                  {formatDate(event?.date || "") || "Sem data definida"}
+                </span>
+              </p>
+              <p className="listInfo-item">
+                <MdVaccines /> Responsável:
+                <span>{event?.responsible || "Sem responsável definido"}</span>
+              </p>
+              <p className="listInfo-item">
+                <MdVaccines /> Vagas:
+                <span>
+                  {event?.requestReservation?.length || "0"}/
+                  <b>{event?.places || "0"}</b>
+                </span>
+              </p>
+            </div>
           </>
         ) : (
           <NotFoundDatas />
