@@ -1,0 +1,9 @@
+.eventDetails-apresentation {
+  position: relative;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  height: auto;
+  padding: 0 2rem;
+  margin-top: 15rem;
+}
