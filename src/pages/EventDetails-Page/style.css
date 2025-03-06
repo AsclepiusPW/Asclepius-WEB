@@ -107,3 +107,21 @@
   font-weight: normal;
   color: var(--text-color);
 }
+
+.eventDetails-events {
+  margin-top: 3rem;
+  flex-direction: column;
+  gap: 2rem;
+  width: 90%;
+}
+
+.eventDetails-events h2 {
+  align-self: flex-start;
+  padding-left: 5rem;
+  color: var(--green-dark);
+}
+
+.eventRelationsList {
+  width: 90%;
+  grid-template-columns: repeat(2, 1fr);
+}
