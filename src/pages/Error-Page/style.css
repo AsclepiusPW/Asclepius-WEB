@@ -1,0 +1,21 @@
+.errorPage{
+    width: 100%;
+    height: 100vh;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 2rem;
+}
+
+.erroPage-title{
+    color: var(--green-dark);
+}
+
+.errorPage-image{
+    width: 16rem;
+}
+
+.errorPage-description{
+    width: 40%;
+    text-align: center;
+}
