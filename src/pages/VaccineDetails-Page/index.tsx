@@ -92,6 +92,10 @@ export const VaccineDetailsPage = () => {
     })();
   }, [vaccine, allVaccines]); // Adicionado allVaccines como dependência
 
+  useEffect(() => {
+    window.scrollTo(0, 0);
+  }, []);
+
   return (
     <div
       className="container flex apresentation vaccineDetailsScreen"

@@ -109,6 +109,10 @@
         height: 4.5rem;
         gap:0.3rem;
     }
+
+    .apresentation-slider{
+        width: 100%;
+    }
 }
   
 @media screen and (max-width: 576px) {  

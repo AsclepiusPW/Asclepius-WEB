@@ -21,6 +21,7 @@ import { UserDTO } from "../../types/userTypes";
 import { useUser } from "../../Contexts/UserContext";
 import { VaccinationDTO } from "../../types/vaccinationTypes";
 import { RegisterVaccination } from "../../components/RegisterVaccination-Component";
+import { scrollToId } from "../../Utils/scrollFunctions";
 
 //Class
 export const RegisterVaccinationPage = () => {
@@ -40,6 +41,10 @@ export const RegisterVaccinationPage = () => {
         setVisibleRegisters(user?.vaccination);
         setIsLoading(false);
     }, [user]);
+
+    useEffect(() => {
+        scrollToId("requestVaccination")
+    },[]);
 
     //Função
     const handleSearch = (query: string) => {

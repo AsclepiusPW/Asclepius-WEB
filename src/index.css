@@ -228,6 +228,7 @@ input {
   padding: 0.8rem 1rem;
   background-color: var(--green-dark);
   color: var(--white-color);
+  font-size: var(--small-font-size);
   font-weight: bold;
   border-radius: 2rem;
   transition: all .5s;
@@ -239,6 +240,7 @@ input {
   color: var(--green-dark);
   border: 3px solid var(--green-dark);
   font-weight: bold;
+  font-size: var(--small-font-size);
   border-radius: 2rem;
   transition: all .5s;
 }
@@ -300,6 +302,10 @@ input {
 
 @media screen and (max-width: 576px) {
 
+  .button-opacity,
+  .button-totality{
+    font-size: var(--smaller-font-size);
+  }
 }
 
 /* For small devices */

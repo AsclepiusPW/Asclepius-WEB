@@ -31,6 +31,7 @@ import { MdVaccines } from "react-icons/md";
 import { formatStatusEvent } from "../../Utils/statusRequest";
 import { formatDate } from "../../Utils/formatDate";
 import { OptionsDoctorsSlider } from "../../Sliders/OptionsDoctors-slider";
+import { scrollToId } from "../../Utils/scrollFunctions";
 
 // Criar um ícone personalizado para o marcador
 const customIcon = new L.Icon({
@@ -78,6 +79,10 @@ export const EventDetailsPage = () => {
       setLoading(false);
     })();
   }, [id, allEvents]);
+
+  useEffect(() => {
+    scrollToId("eventDetails");
+  }, []);
 
   return (
     <div

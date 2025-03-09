@@ -114,7 +114,7 @@ export const Header: React.FC<Props> = ({ userVisibility, actionPage, functionSe
             </div>
 
             <div className="headerPages-itens flex">
-                <img src={logo} alt="Asclepius" className="headerPages-logo" />
+                <img src={logo} alt="Asclepius" className="headerPages-logo" onClick={() => navigate("/home")}/>
 
                 <ul className={toggleMenu ? "navMenu showMenu" : "headerPages-list flex"}>
                     <li className="headerPagesList-item">

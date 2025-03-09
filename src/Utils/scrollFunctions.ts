@@ -26,3 +26,10 @@ export const scrollToEvents = () => {
         formElement.scrollIntoView({ behavior: 'smooth' });
     }
 };
+
+export const scrollToId = (name:string) => {
+    const formElement = document.getElementById(name);
+    if (formElement) {
+        formElement.scrollIntoView({ behavior: 'smooth' });
+    }
+};
