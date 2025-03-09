@@ -19,6 +19,7 @@
   --green-aqua-ligth-color: #66CDAA;
   --green-tiny-color: #A3E7D6;
   --ligth-green-color: #E0F4EA;
+  --error-color: #fd5252;
 
   --orange-color: #F49300;
   --orange-color-lite: #E9B05A;
@@ -126,14 +127,22 @@ input {
   outline: none;
 }
 
+.leaflet-container {
+  width: 100%;
+  height: 100%;
+}
 
 /*=============== REUSABLE CSS CLASSES ===============*/
+.form-error{
+  margin-top: 0.5rem;
+  font-size: var(--small-font-size);
+  color: var(--error-color);
+}
 
 /*=============== LAYOUT ===============*/
 .container {
   max-width: 100vw;
   height: 100vh;
-  padding: 1.5rem;
   margin-left: auto;
   margin-right: auto;
 }
@@ -162,7 +171,6 @@ input {
   align-items: center;
   flex-direction: column;
   gap: 3rem;
-  overflow-y: auto;
 }
 
 .apresentationList{
@@ -185,21 +193,25 @@ input {
   column-gap: 1.5rem;
 }
 
+.sectionSlidersPages{
+  width: 90rem;
+}
+
 /*=============== ANIMATION ===============*/
 
 /*=============== BUTTONS ===============*/
 .button {
   display: inline-block;
-  background-color: var(--white-color);
-  color: var(--border-color);
-  padding: 1rem 2rem;
-  border-radius: 0.5rem;
+  background-color: var(--green-dark);
+  color: var(--white-color);
+  padding: 0.5rem 1.5rem;
+  border-radius: 2rem;
   transition: all .5s;
   font-weight: var(--font-medium);
 }
 
 .button:hover {
-  background-color: var(--border-color);
+  background-color: var(--green-aqua-color);
   color: var(--white-color);;
 }
 
@@ -212,14 +224,50 @@ input {
   align-items: center;
 }
 
+.button-totality{
+  padding: 0.8rem 1rem;
+  background-color: var(--green-dark);
+  color: var(--white-color);
+  font-size: var(--small-font-size);
+  font-weight: bold;
+  border-radius: 2rem;
+  transition: all .5s;
+}
+
+.button-opacity{
+  padding: 0.6rem 1rem;
+  background-color: transparent;
+  color: var(--green-dark);
+  border: 3px solid var(--green-dark);
+  font-weight: bold;
+  font-size: var(--small-font-size);
+  border-radius: 2rem;
+  transition: all .5s;
+}
+
+.button-opacity a {
+  text-decoration: none;
+  color: var(--green-dark);
+}
+
+.button-totality a{
+  text-decoration: none;
+  color: var(--white-color);
+}
+
+.button-totality:hover{
+  background-color: var(--green-aqua-color);
+}
+
+.button-opacity:hover{
+  color: var(--white-color);
+  background-color: var(--green-aqua-color);
+  border: 3px solid var(--green-aqua-color);
+}
+
 /*=============== BREAKPOINTS ===============*/
 /* For large devices */
 @media screen and (max-width: 992px) {
-  .container {
-    margin-left: var(--mb-1-5);
-    margin-right: var(--mb-1-5);
-  }
-
   .button {
     padding: 0.75rem 1.75rem;
   }
@@ -254,6 +302,10 @@ input {
 
 @media screen and (max-width: 576px) {
 
+  .button-opacity,
+  .button-totality{
+    font-size: var(--smaller-font-size);
+  }
 }
 
 /* For small devices */

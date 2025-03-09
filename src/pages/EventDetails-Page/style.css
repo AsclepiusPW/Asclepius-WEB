@@ -1,0 +1,140 @@
+/*Estilização padrão*/
+.eventDetails-apresentation {
+  position: relative;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100%;
+  height: auto;
+  padding: 0 2rem;
+  margin-top: 15rem;
+}
+
+/*Estilização do cabeçalho*/
+.eventDetailsHeader {
+  margin-top: 2rem;
+}
+
+.eventDetailsHeader,
+.eventDetails-observation,
+.eventDetails-vaccine {
+  width: 80%;
+  flex-direction: column;
+  gap: 1.5rem;
+  background-color: var(--white-color);
+  border-radius: 1rem;
+  padding: 1rem 0;
+}
+
+.eventDetailsHeader-map {
+  position: relative;
+  width: 95%;
+  height: 20rem;
+  padding-top: 0.3rem;
+  z-index: 1;
+}
+
+.eventDetails-info,
+.eventVaccine-title {
+  width: 90%;
+  justify-content: space-between;
+}
+
+.eventDetails-list,
+.eventVaccineDescription-list {
+  width: 90%;
+  flex-direction: column;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.eventDetails-local,
+.listInfo-item,
+.eventDetails-observation h2,
+.eventVaccine-title h2,
+.descriptionListVaccine-item {
+  color: var(--green-dark);
+  font-weight: bold;
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+}
+
+.eventDetails-local span,
+.listInfo-item span,
+.descriptionListVaccine-item span {
+  margin-left: 0.3rem;
+}
+
+.listInfo-item span,
+.descriptionListVaccine-item span {
+  font-weight: normal;
+  color: var(--text-color);
+}
+
+/*observação*/
+.eventDetails-observation {
+  align-items: flex-start;
+  padding: 1rem 3rem;
+}
+
+.eventDetails-observation p {
+  text-align: justify;
+}
+
+/*Lista de eventos*/
+.eventDetails-events {
+  margin-top: 3rem;
+  flex-direction: column;
+  gap: 2rem;
+  width: 90%;
+}
+
+.eventDetails-events h2 {
+  align-self: flex-start;
+  padding-left: 5rem;
+  color: var(--green-dark);
+}
+
+.eventRelationsList {
+  width: 90%;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For large devices */
+@media screen and (max-width: 992px) {
+}
+
+/* For medium devices */
+@media screen and (max-width: 768px) {
+  .eventDetails-apresentation {
+    margin-top: 8rem;
+    padding: 0 0.5rem;
+  }
+
+  .eventDetailsHeader,
+  .eventDetails-observation,
+  .eventDetails-vaccine {
+    width: 90%;
+  }
+
+  .eventDetails-events h2 {
+    padding-left: 0;
+    align-self: center;
+  }
+
+  .eventRelationsList {
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 576px) {
+}
+
+/* For small devices */
+@media screen and (max-width: 370px) {
+}

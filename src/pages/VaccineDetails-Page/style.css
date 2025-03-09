@@ -1,0 +1,111 @@
+.vaccineDetails-apresentation {
+  position: relative;
+  flex-direction: column;
+  width: 100%;
+  height: auto;
+  padding: 2rem 0;
+  gap: 4rem;
+  margin-top: 15rem;
+}
+
+.vaccineDetailsHeader {
+  margin-top: 2rem;
+  width: 80%;
+  height: auto;
+  gap: 2rem;
+  padding: 0 2rem;
+}
+
+.vaccineDetails-image {
+  width: 6rem;
+}
+
+.vaccineDetails-info {
+  flex-direction: column;
+  height: auto;
+  gap: 0.5rem;
+  align-items: flex-start;
+}
+
+.vaccineDetails-name,
+.vaccineDetails-manufacturer,
+.vaccineDetails-type,
+.vaccineDetails-description h2,
+.vaccineDetails-contraIndication h2,
+.vaccineListEvents h1 {
+  color: var(--green-dark);
+  display: -webkit-box;
+  -webkit-line-clamp: 1;
+  -webkit-box-orient: vertical;
+  overflow: hidden;
+  text-overflow: ellipsis;
+  word-break: break-word;
+}
+
+.vaccineDetails-name span,
+.vaccineDetails-manufacturer span,
+.vaccineDetails-type span {
+  margin-left: 0.3rem;
+  color: var(--text-color);
+}
+
+.vaccineDetails-description,
+.vaccineDetails-contraIndication {
+  width: 80%;
+  align-items: flex-start;
+  flex-direction: column;
+}
+
+.vaccineDetails-description p,
+.vaccineDetails-contraIndication p {
+  text-align: justify;
+}
+
+.vaccineListEvents {
+  margin-top: 3rem;
+  flex-direction: column;
+  align-items: flex-start;
+  width: 80%;
+  height: auto;
+  gap: 2rem;
+}
+
+.vaccineDetails-events,
+.vaccineDetails-vaccine {
+  width: 100%;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For large devices */
+@media screen and (max-width: 992px) {
+}
+
+/* For medium devices */
+@media screen and (max-width: 768px) {
+  .vaccineDetails-apresentation {
+    margin-top: 8rem;
+    padding: 0 0.5rem;
+  }
+
+  .vaccineDetailsHeader {
+    width: 90%;
+  }
+
+  .vaccineDetails-image {
+    display: none;
+  }
+
+  .vaccineDetails-events,
+  .vaccineDetails-vaccine {
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 576px) {
+}
+
+/* For small devices */
+@media screen and (max-width: 370px) {
+}

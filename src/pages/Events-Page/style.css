@@ -1,0 +1,56 @@
+/*Defaults*/
+.apresentationContainer {
+  width: 100%;
+  height: 100%;
+  gap: 2rem;
+}
+
+/*Lista de eventos*/
+.gridListAllEvents {
+  margin-top: 5rem;
+  flex-direction: column;
+  gap: 2rem;
+  width: 100% !important;
+  height: auto !important;
+}
+
+.listAllEventsTitle {
+  width: 100%;
+  justify-content: space-between;
+}
+
+.titleEvents,
+.numericEvents {
+  color: var(--green-dark);
+}
+
+.listEvents {
+  width: 80%;
+  height: auto;
+  grid-template-columns: repeat(2, 1fr);
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For large devices */
+@media screen and (max-width: 992px) {
+}
+
+/* For medium devices */
+@media screen and (max-width: 768px) {
+  .apresentationContainer {
+    margin-top: 8rem;
+    padding: 0 2rem;
+  }
+
+  .listEvents {
+    width: 100%;
+    grid-template-columns: 1fr;
+  }
+}
+
+@media screen and (max-width: 576px) {
+}
+
+/* For small devices */
+@media screen and (max-width: 370px) {
+}

@@ -1,0 +1,21 @@
+.mySwiper-system,
+.SliderSwiper-system {
+    width: 100%;
+    height: auto; /* Permite que o swiper se ajuste ao conteúdo */
+}
+
+.swiper-slide {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100%; /* Ajusta conforme necessário */
+}
+
+
+/*=============== BREAKPOINTS ===============*/
+/* For large devices */
+@media screen and (max-width: 992px) {
+    .mySwiper-system{
+        width: initial;
+    }
+}  

@@ -1,0 +1,85 @@
+.optionDoctor-component {
+    position: relative;
+    background: linear-gradient(135deg, #b3f0e1, #17908a);
+    height: 15rem;
+    width: 700px;
+    padding: 0.5rem 2rem;
+    border-radius: 2rem;
+    display: flex;
+    align-items: flex-end; /* Alinha os elementos na parte inferior */
+    margin-top: 8rem;
+}
+
+.imageDoctor {
+    width: 15rem;
+    filter: drop-shadow(-4px 4px 12px rgba(0, 0, 0, 0.25));
+}
+
+.optionDoctor-content {
+    width: 70%;
+    height: 55%;
+    margin-left: auto; 
+    padding-left: 1rem;
+    flex-direction: column;
+    align-self: center;
+    align-items: flex-start;
+    justify-content: space-between;
+}
+
+.contentDescription{
+    color: var(--white-color);
+}
+
+.contentDescription b{
+    color: var(--title-color);
+    font-weight: bold;
+}
+
+.nameDoctor-action{
+    color: var(--white-color);
+    font-size: var(--small-font-size);
+}
+
+/*=============== BREAKPOINTS ===============*/
+/* For large devices */
+@media screen and (max-width: 992px) {
+    .optionDoctor-component{
+        width: 650px;
+    }
+}
+
+/* For medium devices */
+@media screen and (max-width: 768px) {
+    .optionDoctor-component{
+        width: 500px;
+    }
+
+    .imageDoctor{
+        width: 10rem;
+    }
+}
+
+@media screen and (max-width: 576px) {
+    .optionDoctor-component{
+        width: 320px;
+        align-items: center;
+    }
+
+    .imageDoctor{
+        width: 6rem;
+    }
+
+    .optionDoctor-content{
+        height: 70%;
+    }
+
+    .contentDescription,
+    .nameDoctor-action{
+      font-size: var(--tiny-font-size);   
+    }
+}
+
+/* For small devices */
+@media screen and (max-width: 370px) {
+    
+}

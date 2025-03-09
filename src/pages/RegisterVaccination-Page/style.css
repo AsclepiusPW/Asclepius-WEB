@@ -1,0 +1,46 @@
+/* Initial styles*/
+.apresentationRequestVaccination{
+    position: relative;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 8rem;
+    width: 80%;
+    margin-top: 17rem;
+    margin-bottom: 4rem;
+}
+
+/* Title styles*/
+.apresentationContentRequest-title{
+    color: var(--green-dark);
+    text-align: center;
+}
+
+/* Filter styles*/
+.apresentationRequest-filter{
+    flex-direction: column;
+    gap: 1.5rem;
+    width: 90%;
+}
+
+/* List styles*/
+.apresentationListRequests{
+    width: 90%;
+    height: auto;
+    grid-template-columns: repeat(2, 1fr);
+}
+
+.notFoundItems{
+    width: 80%;
+}
+
+/* For medium devices */
+@media screen and (max-width: 768px) {
+    .apresentationRequestVaccination{
+        margin-top: 7rem;
+    }
+
+    .apresentationListRequests{
+        grid-template-columns: repeat(1, 1fr);
+    }
+}
