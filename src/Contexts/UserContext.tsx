@@ -55,14 +55,17 @@ export const UserProvider: React.FC<UserProviderProps> = ({ children }) => {
         }
         setLoading(true);
         try {
+            toast.loading("Criando seu perfil...")
             const response = await createUser(data);
 
             if (response) {
+                toast.dismiss();
                 setUser(response);
                 toast.success("Usuário criado com sucesso!");
                 await signIn({ email: data.email, password: data.password });
             }
         } catch (error) {
+            toast.dismiss();
             toast.error("Erro ao criar usuário, tente novamente mais tarde.");
             console.error("Error ao criar usuário: ", error);
             if (error instanceof Error) {

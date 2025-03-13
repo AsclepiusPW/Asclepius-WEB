@@ -98,7 +98,7 @@ export const LoginSection = () => {
                     Esqueceu sua senha? <a href="/password">Clique aqui</a>
                 </p>
 
-                <button type="submit" className="loginUser-button">
+                <button type="submit" className={loading ? "loading" : "loginUser-button"} disabled={loading}>
                     {loading ? "Carregando..." : "Entrar"}
                 </button>
             </form>

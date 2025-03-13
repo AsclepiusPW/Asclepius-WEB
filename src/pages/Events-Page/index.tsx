@@ -94,28 +94,41 @@ export const EventsPages = () => {
     }
   };
 
-  const handleFilterForGeolocation = () => {
+  const haversineDistance = (lat1: number, lon1: number, lat2: number, lon2: number) => {
+    const R = 6371; // Raio da Terra em km
+    const toRad = (value:number) => (value * Math.PI) / 180;
+
+    const dLat = toRad(lat2 - lat1);
+    const dLon = toRad(lon2 - lon1);
+
+    const a =
+        Math.sin(dLat / 2) * Math.sin(dLat / 2) +
+        Math.cos(toRad(lat1)) *
+            Math.cos(toRad(lat2)) *
+            Math.sin(dLon / 2) *
+            Math.sin(dLon / 2);
+
+    const c = 2 * Math.atan2(Math.sqrt(a), Math.sqrt(1 - a));
+    return R * c; // Distância em km
+};
+
+const handleFilterForGeolocation = () => {
     if (!user || !allListEvents) return;
 
     const { latitude: userLat, longitude: userLng } = user;
 
     const filteredEvents = allListEvents.filter((event) => {
-      if (!event.latitude || !event.longitude) return false;
-
-      const eventLat = event.latitude;
-      const eventLng = event.longitude;
-
-      const distance = Math.sqrt(
-        Math.pow(parseFloat(eventLat) - userLat, 2) +
-          Math.pow(parseFloat(eventLng) - userLng, 2)
-      );
-
-      return distance < 0.1; // Ajuste conforme necessário para a proximidade desejada
+        if (event.latitude == null || event.longitude == null) return false;
+        const distance = haversineDistance(userLat, userLng, parseFloat(event.latitude), parseFloat(event.longitude));
+        return distance < 1000;
     });
+
+    console.log("Filtered events:", filteredEvents);
 
     setVisibleEvents(filteredEvents);
     scrollToEvents();
-  };
+};
+
 
   const handleFilterForThisMounth = () => {
     if (!allListEvents) return;

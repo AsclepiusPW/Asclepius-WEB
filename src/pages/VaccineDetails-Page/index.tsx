@@ -154,23 +154,26 @@ export const VaccineDetailsPage = () => {
               </p>
             </div>
 
-            <div className="vaccineListEvents flex">
-              {loadingEvent ? (
-                <LoadingDatasComponent />
-              ) : event ? (
-                <>
-                  <h1>Eventos de vacinação</h1>
-                  <div className="vaccineDetails-events grid">
-                    {event &&
-                      event?.map((event, index) => (
-                        <EventComponent key={index} event={event} />
-                      ))}
-                  </div>
-                </>
-              ) : (
-                <NotFoundDatas />
-              )}
-            </div>
+            {event && (
+              <div className="vaccineListEvents flex">
+                {loadingEvent ? (
+                  <LoadingDatasComponent />
+                ) : event ? (
+                  <>
+                    <h1>Eventos de vacinação</h1>
+                    <div className="vaccineDetails-events grid">
+                      {event &&
+                        event?.map((event, index) => (
+                          <EventComponent key={index} event={event} />
+                        ))}
+                    </div>
+                  </>
+                ) : (
+                  <NotFoundDatas />
+                )}
+              </div>
+
+            )}
 
             <div className="vaccineListEvents flex">
               <h1>Vacinas do mesmo tipo</h1>
