@@ -62,6 +62,8 @@ export const ourServicesData: ourServices[] = [
 import { useEvent } from "../../Contexts/EventContext";
 import { useUser } from "../../Contexts/UserContext";
 import { RequestVaccinationComponent } from "../../components/RequestVaccination-Component";
+import { scrollToId } from "../../Utils/scrollFunctions";
+import { NotFoundDatas } from "../../components/NotFoundDatas-Component";
 
 //Class
 export function HomePage() {
@@ -85,10 +87,11 @@ export function HomePage() {
     },[allEvents]);
 
     useEffect(() => {
-        if (user) {
-            setLastedRequests(user.requestReservation.reverse().slice(0, 4));
+        if (user?.requestReservation?.length) {
+            setLastedRequests([...user.requestReservation].reverse().slice(0, 4));
         }
-    },[user]);
+        scrollToId("homePage");
+    }, [user]);    
 
     return (
         <div className="container flex apresentation HomeScreen" id="homePage">
@@ -123,25 +126,35 @@ export function HomePage() {
                         <button className="button-opacity" onClick={() => navigate("/events")}>Ver mais</button>
                     </div>
 
-                    <div className="listLatestedEvents-list grid">
-                        {latestedvents?.map((event) => (
-                            <EventComponent event={event} key={event.id} />
-                        ))}
-                    </div>
+                    {latestedvents && latestedvents?.length > 0 ? (
+                        <div className="listLatestedEvents-list grid">
+                            {latestedvents?.map((event) => (
+                                <EventComponent event={event} key={event.id} />
+                            ))}
+                        </div>
+                    ) : (
+                        <NotFoundDatas title="Nenhum evento encontrado"/>
+                    )}
                 </div>
 
-                <div className="listLatestedEvents flex">
-                    <div className="listLatestedEvents-title flex">
-                        <h2>Suas últimas solicitações</h2>
-                        <button className="button-opacity" onClick={() => navigate("/requestVaccination")}>Ver mais</button>
-                    </div>
+                {latestedRequests && latestedRequests.length > 0 && (
+                    <div className="listLatestedEvents flex">
+                        <div className="listLatestedEvents-title flex">
+                            <h2>Suas últimas solicitações</h2>
+                            <button className="button-opacity" onClick={() => navigate("/requestVaccination")}>Ver mais</button>
+                        </div>
 
-                    <div className="listLatestedEvents-list grid">
-                        {latestedRequests?.map((request) => (
-                            <RequestVaccinationComponent calendar={request} key={request.id} />
-                        ))}
+                        {user && user?.requestReservation.length > 0 ? (
+                            <div className="listLatestedEvents-list grid">
+                                {latestedRequests?.map((request) => (
+                                        <RequestVaccinationComponent calendar={request} key={request.id} />
+                                ))}
+                            </div>
+                        ) : (
+                            <NotFoundDatas/>
+                        )}
                     </div>
-                </div>
+                )}
 
                 <div className="ourServices-apresentation flex">
                     <h2>Opiniões dos nossos médicos</h2>

@@ -2,6 +2,7 @@
 import { useState } from "react";
 import { useForm, SubmitHandler } from "react-hook-form";
 import { yupResolver } from "@hookform/resolvers/yup";
+import { toast } from "react-toastify";
 
 //Estilização
 import "./style.css";
@@ -74,8 +75,10 @@ export const CreateUserSection = () => {
     const onSubmit: SubmitHandler<formCreateUser> = async (data) => {
         setLoading(true);
         // Aguarda a obtenção da localização
+        toast.loading("Aguardade alguns segundos, estamos capturando sua localização...");
         const location = await getLocation();
-        
+        toast.dismiss();
+
         if (!location.latitude || !location.longitude) {
             setError("acceptLocation", { type: "manual", message: "Aceite compartilhar localização" });
             return;
@@ -183,7 +186,7 @@ export const CreateUserSection = () => {
                     <span className="form-error">{errors.acceptLocation?.message}</span>
                 </label>
 
-                <button type="submit" className="formCreate-button">
+                <button type="submit" className={loading ? "loading" : "formCreate-button"} disabled={loading}>
                     {loading ? "Carregando..." : "Cadastrar"}
                 </button>
             </form>
